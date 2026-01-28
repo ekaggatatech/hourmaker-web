@@ -1,0 +1,45 @@
+{
+  "greeting": "Hello! I'm your Hourmaker assistant. How can I help you today?",
+  "questions": [
+    {
+      "id": 1,
+      "question": "What does Hourmaker do?",
+      "answer": "Hourmaker is a workforce management platform that automates time tracking, scheduling, leave management, and approvals for businesses of all sizes."
+    },
+    {
+      "id": 2,
+      "question": "What are the pricing plans?",
+      "answer": "We offer Starter (₹599/user/month), Professional (₹1299/user/month), and Enterprise (custom pricing) plans. All include a 14-day free trial."
+    },
+    {
+      "id": 3,
+      "question": "Is there a free trial?",
+      "answer": "Yes! 14-day free trial of Professional plan with full feature access. No credit card required."
+    },
+    {
+      "id": 4,
+      "question": "What integrations are available?",
+      "answer": "We integrate with 50+ tools including Slack, Teams, Jira, QuickBooks, Xero, ADP, and Workday. Plus a robust API."
+    },
+    {
+      "id": 5,
+      "question": "What support do you offer?",
+      "answer": "Email support (Starter), priority support (Professional), 24/7 premium with dedicated manager (Enterprise)."
+    },
+    {
+      "id": 6,
+      "question": "How to schedule a demo?",
+      "answer": "Visit hourmaker.in/demo or chat with us. We'll show the platform and answer your questions personally."
+    },
+    {
+      "id": 7,
+      "question": "Is my data secure?",
+      "answer": "Yes! Enterprise-grade security with end-to-end encryption, SOC 2 compliance, and regular audits."
+    },
+    {
+      "id": 8,
+      "question": "Can I export my data?",
+      "answer": "Absolutely. Export in CSV, Excel, or PDF anytime, even after cancellation. No vendor lock-in."
+    }
+  ]
+}
