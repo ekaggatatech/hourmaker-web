@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import {
   Building2,
@@ -14,11 +14,22 @@ import {
   Rocket,
   Code,
   Heart,
+  CheckCircle,
+  XCircle,
 } from "lucide-react";
 import Layout from "../components/layout/Layout";
+import { submitContactForm } from "../services/firebaseService";
 
 const CompanyPage = () => {
   const location = useLocation();
+  const [contactForm, setContactForm] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
 
   useEffect(() => {
     if (location.hash) {
@@ -32,6 +43,48 @@ const CompanyPage = () => {
       window.scrollTo(0, 0);
     }
   }, [location]);
+
+  const handleContactSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      const result = await submitContactForm(contactForm);
+
+      if (result.success) {
+        setSubmitStatus({
+          type: "success",
+          message: "Thank you! Your message has been sent successfully.",
+        });
+        setContactForm({ name: "", email: "", subject: "", message: "" });
+
+        setTimeout(() => {
+          setSubmitStatus(null);
+        }, 5000);
+      } else {
+        setSubmitStatus({
+          type: "error",
+          message: "Failed to send message. Please try again.",
+        });
+      }
+    } catch (error) {
+      setSubmitStatus({
+        type: "error",
+        message: "An error occurred. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleContactChange = (e) => {
+    const { name, value } = e.target;
+    setContactForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
   return (
     <Layout>
@@ -59,14 +112,14 @@ const CompanyPage = () => {
               <p className="text-muted-foreground mb-4">
                 Hourmaker was born from a simple frustration: managing
                 timesheets and workforce operations shouldn't be a daily battle.
-                Founded in 2020, we set out to build the workforce management
-                platform we wished existed.
+                We set out to build the workforce management platform we wished
+                existed.
               </p>
               <p className="text-muted-foreground mb-4">
-                Today, we serve over 27,500 companies across India and beyond,
-                helping them save thousands of hours and millions of rupees in
-                administrative costs. Our platform processes over 10 million
-                time entries every month.
+                Today, we serve many companies across India and beyond, helping
+                them save thousands of hours and millions of rupees in
+                administrative costs. Our platform processes over 8 million time
+                entries every month.
               </p>
               <p className="text-muted-foreground">
                 We believe that great software should be intuitive, affordable,
@@ -78,11 +131,11 @@ const CompanyPage = () => {
               {[
                 {
                   icon: Building2,
-                  value: "27,500+",
-                  label: "Companies Trust Us",
+                  value: "93%",
+                  label: "Work load Automation",
                 },
-                { icon: Users, value: "2M+", label: "Active Users" },
-                { icon: Globe, value: "15+", label: "Countries Served" },
+                { icon: Users, value: "21K+", label: "Active Users" },
+                { icon: Globe, value: "4+", label: "Countries Served" },
                 { icon: Award, value: "98.5%", label: "Satisfaction Rate" },
               ].map((stat, index) => (
                 <div
@@ -128,10 +181,18 @@ const CompanyPage = () => {
                     businesses operate.
                   </p>
                   <p className="text-muted-foreground mb-4">
-                    "Ekaggata" (एकाग्रता) means "focus" in Sanskrit – a
+                    {/* "Ekaggata" (एकाग्रता) means "focus" in Sanskrit – a
                     principle that guides everything we build. From architecture
                     to user experience, we maintain relentless focus on solving
-                    real problems elegantly.
+                    real problems elegantly. */}
+                    Ekaggata Technologies uniquely delivers it’s clients
+                    end-to-end IT Consulting, Technology and Digital Marketing
+                    capabilities with expertise in investment banking, capital
+                    market, risk management, treasury, payment, trading
+                    platforms and insurance as well as emerging technologies
+                    like Cloud, Artificial Intelligence, and Data Science. This
+                    has helped the company to grow to a thriving IT company in
+                    Indian IT landscape.
                   </p>
                   <p className="text-muted-foreground">
                     We're proud to be bootstrapped and profitable, which means
@@ -147,7 +208,7 @@ const CompanyPage = () => {
                     </div>
                     <div>
                       <h4 className="font-poppins font-semibold text-primary-dark">
-                        50+ Engineers
+                        200+ Engineers
                       </h4>
                       <p className="text-sm text-muted-foreground">
                         World-class engineering team from IITs, NITs, and top
@@ -161,14 +222,14 @@ const CompanyPage = () => {
                     </div>
                     <div>
                       <h4 className="font-poppins font-semibold text-primary-dark">
-                        5+ Products
+                        9+ Products
                       </h4>
                       <p className="text-sm text-muted-foreground">
                         Suite of enterprise tools serving diverse business needs
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-4">
+                  {/* <div className="flex items-start gap-4">
                     <div className="w-12 h-12 rounded-xl bg-primary-light flex items-center justify-center flex-shrink-0">
                       <Shield className="w-6 h-6 text-primary" />
                     </div>
@@ -180,7 +241,7 @@ const CompanyPage = () => {
                         Enterprise-grade security and compliance standards
                       </p>
                     </div>
-                  </div>
+                  </div> */}
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 rounded-xl bg-primary-light flex items-center justify-center flex-shrink-0">
                       <Heart className="w-6 h-6 text-primary" />
@@ -306,34 +367,79 @@ const CompanyPage = () => {
               <h3 className="font-poppins text-xl font-semibold text-primary-dark mb-6">
                 Send us a Message
               </h3>
-              <form className="space-y-4">
+
+              {submitStatus && (
+                <div
+                  className={`mb-6 p-4 rounded-lg flex items-start gap-3 ${
+                    submitStatus.type === "success"
+                      ? "bg-green-50 text-green-800 border border-green-200"
+                      : "bg-red-50 text-red-800 border border-red-200"
+                  }`}
+                >
+                  {submitStatus.type === "success" ? (
+                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                  ) : (
+                    <XCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+                  )}
+                  <span>{submitStatus.message}</span>
+                </div>
+              )}
+
+              <form onSubmit={handleContactSubmit} className="space-y-4">
                 <div className="grid md:grid-cols-2 gap-4">
                   <input
                     type="text"
+                    name="name"
                     placeholder="Your Name"
+                    value={contactForm.name}
+                    onChange={handleContactChange}
                     className="w-full px-4 py-3 border-2 border-border rounded-xl focus:border-primary focus:outline-none transition-colors"
+                    required
+                    disabled={isSubmitting}
                   />
                   <input
                     type="email"
+                    name="email"
                     placeholder="Your Email"
+                    value={contactForm.email}
+                    onChange={handleContactChange}
                     className="w-full px-4 py-3 border-2 border-border rounded-xl focus:border-primary focus:outline-none transition-colors"
+                    required
+                    disabled={isSubmitting}
                   />
                 </div>
                 <input
                   type="text"
+                  name="subject"
                   placeholder="Subject"
+                  value={contactForm.subject}
+                  onChange={handleContactChange}
                   className="w-full px-4 py-3 border-2 border-border rounded-xl focus:border-primary focus:outline-none transition-colors"
+                  disabled={isSubmitting}
                 />
                 <textarea
+                  name="message"
                   placeholder="Your Message"
+                  value={contactForm.message}
+                  onChange={handleContactChange}
                   rows={4}
                   className="w-full px-4 py-3 border-2 border-border rounded-xl focus:border-primary focus:outline-none transition-colors resize-none"
+                  required
+                  disabled={isSubmitting}
                 ></textarea>
                 <button
                   type="submit"
-                  className="w-full py-3 bg-primary text-primary-foreground font-semibold rounded-xl hover:bg-primary-dark transition-colors"
+                  disabled={isSubmitting}
+                  className="w-full py-3 bg-primary text-primary-foreground font-semibold rounded-xl hover:bg-primary-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
-                  Send Message
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      Sending...
+                    </>
+                  ) : (
+                    "Send Message"
+                  )}
                 </button>
               </form>
             </div>

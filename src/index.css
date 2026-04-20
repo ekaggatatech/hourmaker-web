@@ -58,14 +58,18 @@
   .hero-gradient {
     background: linear-gradient(
       135deg,
-      rgba(230, 240, 255, 0.9) 0%,
-      rgba(247, 250, 252, 0.9) 100%
+      theme("colors.primary.light / 0.9") 0%,
+      theme("colors.muted / 0.9") 100%
     );
   }
 
   /* CTA Gradient */
   .cta-gradient {
-    background: linear-gradient(135deg, #2667cc 0%, #3a86ff 100%);
+    background: linear-gradient(
+      135deg,
+      theme("colors.primary.dark") 0%,
+      theme("colors.primary.DEFAULT") 100%
+    );
   }
 
   /* Dropdown Styles */
@@ -248,4 +252,49 @@
 
 .chatbot-wave {
   animation: wave 1.8s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-in {
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+}
+
+.fade-in {
+  animation-name: fadeIn;
+}
+
+.zoom-in {
+  animation-name: zoomIn;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }

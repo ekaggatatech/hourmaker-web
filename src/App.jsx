@@ -15,8 +15,22 @@ import BlogPostPage from "./pages/BlogPostPage.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 
-const queryClient = new QueryClient();
+// Feature Pages
+import FeatureOverview from "./pages/features/FeatureOverview.jsx";
+import FeatureDetail from "./pages/features/FeatureDetail.jsx";
 
+//SEO
+import generateSitemap from "./sitemap";
+
+const queryClient = new QueryClient();
+const Sitemap = () => {
+  const sitemap = generateSitemap();
+  return new Response(sitemap, {
+    headers: {
+      "Content-Type": "application/xml",
+    },
+  });
+};
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -28,14 +42,20 @@ const App = () => (
           <Route path="/" element={<HomePage />} />
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/company" element={<CompanyPage />} />
+
+          {/* Feature Routes */}
+          <Route path="/features" element={<FeatureOverview />} />
+          <Route path="/features/:slug" element={<FeatureDetail />} />
+
           <Route path="/documentation" element={<DocumentationPage />} />
           <Route path="/resources" element={<ResourcesPage />} />
           <Route path="/careers" element={<CareersPage />} />
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="/terms" element={<TermsPage />} />
           <Route path="/blog/:slug" element={<BlogPostPage />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
+          {/*Site Map*/}
+          <Route path="/sitemap.xml" element={<Sitemap />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

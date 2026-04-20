@@ -41,8 +41,6 @@ const BlogPostPage = () => {
 
   return (
     <Layout>
-      {/* SEO Meta Tags would go in document head via helmet or similar */}
-
       {/* Hero */}
       <section className="hero-gradient py-16">
         <div className="container max-w-4xl">

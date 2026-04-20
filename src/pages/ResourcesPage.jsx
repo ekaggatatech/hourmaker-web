@@ -3,16 +3,22 @@ import { useLocation, Link } from "react-router-dom";
 import {
   BookOpen,
   HelpCircle,
-  FileText,
-  Video,
   ArrowRight,
-  ExternalLink,
   Calendar,
-  Users,
-  Zap,
+  Clock,
+  User,
+  Tag,
+  FileText,
+  UserCheck,
+  CheckSquare,
+  FolderKanban,
+  UserPlus,
+  BarChart3,
+  Code,
 } from "lucide-react";
 import Layout from "../components/layout/Layout";
 import { blogPosts } from "../data/blogPosts";
+import { features } from "../data/features";
 
 const ResourcesPage = () => {
   const location = useLocation();
@@ -33,6 +39,47 @@ const ResourcesPage = () => {
 
   const displayedBlogs = showAllBlogs ? blogPosts : blogPosts.slice(0, 3);
 
+  // Group features by category for help section
+  const featureCategories = [
+    {
+      title: "Time Tracking",
+      icon: FileText,
+      features: features.filter(
+        (f) => f.id.includes("timesheet") || f.id.includes("attendance"),
+      ),
+    },
+    {
+      title: "Project Management",
+      icon: FolderKanban,
+      features: features.filter(
+        (f) =>
+          f.id.includes("project") ||
+          f.id.includes("billing") ||
+          f.id.includes("client"),
+      ),
+    },
+    {
+      title: "HR & People",
+      icon: UserCheck,
+      features: features.filter(
+        (f) =>
+          f.id.includes("onboarding") ||
+          f.id.includes("user") ||
+          f.id.includes("holiday"),
+      ),
+    },
+    {
+      title: "Workflow & Analytics",
+      icon: BarChart3,
+      features: features.filter(
+        (f) =>
+          f.id.includes("workflow") ||
+          f.id.includes("analytics") ||
+          f.id.includes("access"),
+      ),
+    },
+  ];
+
   return (
     <Layout>
       {/* Hero Section */}
@@ -42,8 +89,8 @@ const ResourcesPage = () => {
             Resources & <span className="text-primary">Learning</span>
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground">
-            Everything you need to succeed with Hourmaker – from guides and
-            tutorials to webinars and case studies.
+            Explore our blog and feature documentation to get the most out of
+            Hourmaker
           </p>
         </div>
       </section>
@@ -55,117 +102,141 @@ const ResourcesPage = () => {
             <h2>Latest from the Blog</h2>
             <p>Insights, tips, and best practices for workforce management</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {displayedBlogs.map((post) => (
-              <article
-                key={post.id}
-                className="glass-card rounded-xl overflow-hidden hover:-translate-y-1 transition-transform duration-300"
-              >
-                <div className="h-48 bg-gradient-to-br from-primary-light to-muted flex items-center justify-center">
-                  <BookOpen className="w-16 h-16 text-primary/30" />
-                </div>
-                <div className="p-6">
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-xs font-semibold text-primary bg-primary-light px-2 py-1 rounded">
-                      {post.category}
-                    </span>
-                    <span className="text-xs text-muted-foreground">
-                      {post.date}
-                    </span>
-                  </div>
-                  <h3 className="font-poppins font-semibold text-primary-dark mb-2 line-clamp-2">
-                    {post.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
-                    {post.excerpt}
-                  </p>
-                  <Link
-                    to={`/blog/${post.slug}`}
-                    className="text-primary font-semibold text-sm flex items-center gap-1 hover:gap-2 transition-all"
+
+          {blogPosts.length > 0 ? (
+            <>
+              <div className="grid md:grid-cols-3 gap-8">
+                {displayedBlogs.map((post) => (
+                  <article
+                    key={post.id}
+                    className="glass-card rounded-xl overflow-hidden hover:-translate-y-1 transition-transform duration-300"
                   >
-                    Read More <ArrowRight className="w-4 h-4" />
-                  </Link>
+                    <div className="h-48 bg-gradient-to-br from-primary-light to-muted flex items-center justify-center">
+                      <BookOpen className="w-16 h-16 text-primary/30" />
+                    </div>
+                    <div className="p-6">
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="text-xs font-semibold text-primary bg-primary-light px-2 py-1 rounded">
+                          {post.category}
+                        </span>
+                        <span className="text-xs text-muted-foreground flex items-center gap-1">
+                          <Calendar className="w-3 h-3" />
+                          {post.date}
+                        </span>
+                      </div>
+                      <h3 className="font-poppins font-semibold text-primary-dark mb-2 line-clamp-2">
+                        {post.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                        {post.excerpt}
+                      </p>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                          <User className="w-3 h-3" />
+                          <span>{post.author}</span>
+                          <Clock className="w-3 h-3 ml-1" />
+                          <span>{post.readTime}</span>
+                        </div>
+                        <Link
+                          to={`/blog/${post.slug}`}
+                          className="text-primary font-semibold text-sm flex items-center gap-1 hover:gap-2 transition-all"
+                        >
+                          Read <ArrowRight className="w-4 h-4" />
+                        </Link>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+
+              {blogPosts.length > 3 && (
+                <div className="text-center mt-10">
+                  {!showAllBlogs ? (
+                    <button
+                      onClick={() => setShowAllBlogs(true)}
+                      className="px-6 py-3 border-2 border-primary text-primary font-semibold rounded-xl hover:bg-primary-light transition-colors"
+                    >
+                      View All Posts ({blogPosts.length})
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => setShowAllBlogs(false)}
+                      className="px-6 py-3 border-2 border-primary text-primary font-semibold rounded-xl hover:bg-primary-light transition-colors"
+                    >
+                      Show Less
+                    </button>
+                  )}
                 </div>
-              </article>
-            ))}
-          </div>
-          <div className="text-center mt-10">
-            {!showAllBlogs ? (
-              <button
-                onClick={() => setShowAllBlogs(true)}
-                className="px-6 py-3 border-2 border-primary text-primary font-semibold rounded-xl hover:bg-primary-light transition-colors"
-              >
-                View All Posts ({blogPosts.length})
-              </button>
-            ) : (
-              <button
-                onClick={() => setShowAllBlogs(false)}
-                className="px-6 py-3 border-2 border-primary text-primary font-semibold rounded-xl hover:bg-primary-light transition-colors"
-              >
-                Show Less
-              </button>
-            )}
-          </div>
+              )}
+            </>
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground">Blog posts coming soon!</p>
+            </div>
+          )}
         </div>
       </section>
 
-      {/* Help Center Section */}
+      {/* Help Center Section - Redirects to Features */}
       <section id="help" className="py-20 bg-muted">
         <div className="container">
           <div className="section-title">
             <h2>Help Center</h2>
-            <p>
-              Find answers to common questions and learn how to use Hourmaker
-            </p>
+            <p>Find answers by exploring our feature documentation</p>
           </div>
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                icon: HelpCircle,
-                title: "Getting Started",
-                count: "24 articles",
-                description: "Setup guides and first steps",
-              },
-              {
-                icon: FileText,
-                title: "Time Tracking",
-                count: "18 articles",
-                description: "Timesheet and clock-in help",
-              },
-              {
-                icon: Calendar,
-                title: "Scheduling",
-                count: "15 articles",
-                description: "Shift and schedule management",
-              },
-              {
-                icon: Users,
-                title: "Team Management",
-                count: "12 articles",
-                description: "User roles and permissions",
-              },
-            ].map((category, index) => (
-              <div
-                key={index}
-                className="glass-card rounded-xl p-6 hover:-translate-y-1 transition-transform duration-300 cursor-pointer"
-              >
-                <category.icon className="w-10 h-10 text-primary mb-4" />
-                <h3 className="font-poppins font-semibold text-primary-dark mb-1">
-                  {category.title}
-                </h3>
-                <p className="text-sm text-primary mb-2">{category.count}</p>
-                <p className="text-sm text-muted-foreground">
-                  {category.description}
-                </p>
-              </div>
-            ))}
+            {featureCategories.map((category, index) => {
+              const Icon = category.icon;
+              return (
+                <div key={index} className="space-y-4">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Icon className="w-5 h-5 text-primary" />
+                    <h3 className="font-poppins font-semibold text-lg text-primary-dark">
+                      {category.title}
+                    </h3>
+                  </div>
+
+                  {category.features.length > 0 ? (
+                    <div className="space-y-2">
+                      {category.features.map((feature) => (
+                        <Link
+                          key={feature.id}
+                          to={`/features/${feature.slug}`}
+                          className="block glass-card rounded-lg p-3 hover:-translate-y-0.5 transition-all duration-200 hover:shadow-md"
+                        >
+                          <div className="flex items-center gap-2">
+                            <feature.icon className="w-4 h-4 text-primary" />
+                            <span className="text-sm font-medium text-foreground">
+                              {feature.title}
+                            </span>
+                          </div>
+                          <p className="text-xs text-muted-foreground mt-1 line-clamp-2">
+                            {feature.shortDescription}
+                          </p>
+                        </Link>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-sm text-muted-foreground italic">
+                      Coming soon...
+                    </p>
+                  )}
+                </div>
+              );
+            })}
           </div>
-          <div className="mt-12 glass-card rounded-xl p-8 text-center">
-            <h3 className="font-poppins text-xl font-semibold text-primary-dark mb-4">
+
+          {/* Can't find what you're looking for banner */}
+          <div className="mt-12 glass-card rounded-xl p-8 text-center bg-gradient-to-r from-primary/5 to-primary-light/20">
+            <HelpCircle className="w-12 h-12 text-primary mx-auto mb-4" />
+            <h3 className="font-poppins text-xl font-semibold text-primary-dark mb-3">
               Can't find what you're looking for?
             </h3>
-            <p className="text-muted-foreground mb-6">
-              Our support team is available 24/7 to help you with any questions.
+            <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+              Our team is here to help! Whether you need clarification on a
+              feature, help getting started, or have a specific question about
+              your use case.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
@@ -174,275 +245,68 @@ const ResourcesPage = () => {
               >
                 Contact Support
               </Link>
-              <button className="px-6 py-3 border-2 border-primary text-primary font-semibold rounded-xl hover:bg-primary-light transition-colors">
-                Live Chat
-              </button>
+              <Link
+                to="/features"
+                className="px-6 py-3 border-2 border-primary text-primary font-semibold rounded-xl hover:bg-primary-light transition-colors"
+              >
+                Browse All Features
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Case Studies Section */}
-      <section id="case-studies" className="py-20 bg-white">
+      {/* Quick Feature Links - Additional Help */}
+      <section className="py-20 bg-white">
         <div className="container">
           <div className="section-title">
-            <h2>Case Studies</h2>
-            <p>
-              See how leading companies transformed their workforce management
-              with Hourmaker
-            </p>
+            <h2>Popular Features</h2>
+            <p>Quick access to our most commonly used features</p>
           </div>
-          <div className="grid md:grid-cols-2 gap-8">
-            {[
-              {
-                company: "TechNova Solutions",
-                industry: "Technology",
-                employees: "500+",
-                result: "95% improvement in time tracking accuracy",
-                quote:
-                  "Hourmaker transformed how we manage our distributed team.",
-              },
-              {
-                company: "MediCare Hospitals",
-                industry: "Healthcare",
-                employees: "1,200+",
-                result: "₹8 lakhs annual savings in administrative costs",
-                quote: "The ROI was evident within the first quarter.",
-              },
-              {
-                company: "RetailChain India",
-                industry: "Retail",
-                employees: "3,000+",
-                result: "55% reduction in workforce management costs",
-                quote: "The pricing transparency was refreshing.",
-              },
-              {
-                company: "Global BPO Inc.",
-                industry: "Business Services",
-                employees: "1,200+",
-                result: "35% reduction in overtime costs",
-                quote:
-                  "Our team actually enjoys using it compared to our old system.",
-              },
-            ].map((study, index) => (
-              <div
-                key={index}
-                className="glass-card rounded-xl p-8 hover:-translate-y-1 transition-transform duration-300"
-              >
-                <div className="flex justify-between items-start mb-4">
-                  <div>
-                    <h3 className="font-poppins font-semibold text-xl text-primary-dark">
-                      {study.company}
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {features.slice(0, 8).map((feature) => {
+              const Icon = feature.icon;
+              return (
+                <Link
+                  key={feature.id}
+                  to={`/features/${feature.slug}`}
+                  className="flex items-center gap-3 p-4 glass-card rounded-xl hover:-translate-y-1 transition-all duration-200 hover:shadow-md"
+                >
+                  <div className="w-10 h-10 rounded-lg bg-primary-light flex items-center justify-center flex-shrink-0">
+                    <Icon className="w-5 h-5 text-primary" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-poppins font-semibold text-sm text-primary-dark truncate">
+                      {feature.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground">
-                      {study.industry} • {study.employees} employees
+                    <p className="text-xs text-muted-foreground truncate">
+                      Learn more →
                     </p>
                   </div>
-                  <ExternalLink className="w-5 h-5 text-primary" />
-                </div>
-                <div className="bg-success/10 text-success font-semibold px-4 py-2 rounded-lg mb-4 inline-block text-sm">
-                  {study.result}
-                </div>
-                <p className="text-foreground italic">"{study.quote}"</p>
-              </div>
-            ))}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Webinars Section */}
-      <section id="webinars" className="py-20 bg-muted">
-        <div className="container">
-          <div className="section-title">
-            <h2>Webinars & Events</h2>
-            <p>
-              Join our live sessions and learn from workforce management experts
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Upcoming */}
-            <div>
-              <h3 className="font-poppins text-xl font-semibold text-primary-dark mb-6 flex items-center gap-2">
-                <Calendar className="w-5 h-5 text-primary" /> Upcoming Webinars
-              </h3>
-              <div className="space-y-4">
-                {[
-                  {
-                    title:
-                      "Mastering Project Management for Multi-Location Teams",
-                    date: "Feb 5, 2025",
-                    time: "3:00 PM IST",
-                  },
-                  {
-                    title: "Hourmaker Advanced Analytics Deep Dive",
-                    date: "Feb 12, 2025",
-                    time: "2:00 PM IST",
-                  },
-                  {
-                    title: "Compliance Best Practices for HR Teams",
-                    date: "Feb 20, 2025",
-                    time: "4:00 PM IST",
-                  },
-                ].map((webinar, index) => (
-                  <div
-                    key={index}
-                    className="glass-card rounded-xl p-5 flex justify-between items-center"
-                  >
-                    <div>
-                      <h4 className="font-semibold text-primary-dark">
-                        {webinar.title}
-                      </h4>
-                      <p className="text-sm text-muted-foreground">
-                        {webinar.date} at {webinar.time}
-                      </p>
-                    </div>
-                    <button className="px-4 py-2 bg-primary text-primary-foreground font-semibold rounded-lg text-sm hover:bg-primary-dark transition-colors">
-                      Register
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* On-Demand */}
-            <div>
-              <h3 className="font-poppins text-xl font-semibold text-primary-dark mb-6 flex items-center gap-2">
-                <Video className="w-5 h-5 text-primary" /> On-Demand
-              </h3>
-              <div className="space-y-4">
-                {[
-                  {
-                    title: "Getting Started with Hourmaker",
-                    duration: "45 min",
-                    views: "2.4k views",
-                  },
-                  {
-                    title: "Integrating Hourmaker with Your Payroll",
-                    duration: "30 min",
-                    views: "1.8k views",
-                  },
-                  {
-                    title: "Building Custom Reports & Dashboards",
-                    duration: "50 min",
-                    views: "1.2k views",
-                  },
-                ].map((video, index) => (
-                  <div
-                    key={index}
-                    className="glass-card rounded-xl p-5 flex justify-between items-center"
-                  >
-                    <div>
-                      <h4 className="font-semibold text-primary-dark">
-                        {video.title}
-                      </h4>
-                      <p className="text-sm text-muted-foreground">
-                        {video.duration} • {video.views}
-                      </p>
-                    </div>
-                    <button className="px-4 py-2 border-2 border-primary text-primary font-semibold rounded-lg text-sm hover:bg-primary-light transition-colors">
-                      Watch
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Integrations Section */}
-      {/* <section id="integrations" className="py-20 bg-white">
-        <div className="container">
-          <div className="section-title">
-            <h2>Integrations</h2>
-            <p>Connect Hourmaker with the tools your team already uses</p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-            {[
-              "Slack",
-              "Microsoft Teams",
-              "Jira",
-              "QuickBooks",
-              "Xero",
-              "ADP",
-              "Workday",
-              "BambooHR",
-              "Salesforce",
-              "Zoom",
-              "Google Workspace",
-              "Zapier",
-            ].map((tool, index) => (
-              <div
-                key={index}
-                className="glass-card rounded-xl p-6 text-center hover:-translate-y-1 transition-transform duration-300 cursor-pointer"
-              >
-                <div className="w-12 h-12 bg-primary-light rounded-lg mx-auto mb-3 flex items-center justify-center">
-                  <Zap className="w-6 h-6 text-primary" />
-                </div>
-                <span className="text-sm font-semibold text-primary-dark">
-                  {tool}
-                </span>
-              </div>
-            ))}
-          </div>
-          <div className="text-center mt-10">
-            <Link
-              to="/documentation#api"
-              className="text-primary font-semibold hover:underline"
-            >
-              View API Documentation →
-            </Link>
-          </div>
-        </div>
-      </section> */}
-
-      {/* Updates Section */}
-      <section id="updates" className="py-20 bg-muted">
-        <div className="container max-w-4xl">
-          <div className="section-title">
-            <h2>Product Updates</h2>
-            <p>Stay updated with the latest features and improvements</p>
-          </div>
-          <div className="space-y-6">
-            {[
-              {
-                version: "v3.5.0",
-                date: "Jan 20, 2025",
-                title: "AI-Powered Schedule Optimization",
-                description:
-                  "New AI engine that automatically suggests optimal schedules based on historical data and employee preferences.",
-              },
-              {
-                version: "v3.4.0",
-                date: "Jan 5, 2025",
-                title: "Enhanced Mobile App",
-                description:
-                  "Completely redesigned mobile experience with offline support and biometric authentication.",
-              },
-              {
-                version: "v3.3.0",
-                date: "Dec 15, 2024",
-                title: "Advanced Reporting Engine",
-                description:
-                  "New report builder with 50+ pre-built templates and custom visualization options.",
-              },
-            ].map((update, index) => (
-              <div key={index} className="glass-card rounded-xl p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="bg-primary text-primary-foreground text-xs font-semibold px-2 py-1 rounded">
-                    {update.version}
-                  </span>
-                  <span className="text-sm text-muted-foreground">
-                    {update.date}
-                  </span>
-                </div>
-                <h3 className="font-poppins font-semibold text-lg text-primary-dark mb-2">
-                  {update.title}
-                </h3>
-                <p className="text-muted-foreground">{update.description}</p>
-              </div>
-            ))}
-          </div>
+      {/* CTA Section */}
+      <section className="cta-gradient py-20 text-white text-center">
+        <div className="container max-w-3xl">
+          <h2 className="font-poppins text-3xl md:text-4xl font-bold mb-4">
+            Ready to Transform Your Workforce Management?
+          </h2>
+          <p className="text-lg opacity-90 mb-8">
+            Join thousands of companies that trust Hourmaker. Start your free
+            trial today.
+          </p>
+          <Link
+            to="/pricing"
+            className="inline-block px-8 py-4 bg-white text-primary font-poppins font-semibold rounded-xl hover:bg-primary-light transition-colors"
+          >
+            Start Free Trial
+          </Link>
         </div>
       </section>
     </Layout>

@@ -484,7 +484,7 @@ HR compliance automation isn't optional anymore—it's a business necessity. The
 
 [See how Hourmaker ensures compliance](/documentation#workflow) with built-in Indian labor law support.
     `,
-    date: "Dec 28, 2024",
+    date: "Dec 28, 2025",
     category: "Compliance",
     author: "Neha Reddy",
     authorRole: "Compliance Specialist at Hourmaker",
@@ -631,7 +631,7 @@ Onboarding automation delivers clear, measurable ROI while dramatically improvin
 
 [Explore Hourmaker's onboarding automation](/documentation#onboarding) to transform your new hire experience.
     `,
-    date: "Dec 20, 2024",
+    date: "Dec 20, 2025",
     category: "HR Technology",
     author: "Arun Krishnan",
     authorRole: "Head of Customer Success at Hourmaker",

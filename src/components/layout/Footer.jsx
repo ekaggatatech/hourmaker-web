@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import {
-  Clock,
   MapPin,
   Phone,
   Mail,
@@ -14,20 +13,24 @@ const Footer = () => {
   return (
     <footer className="bg-footer text-footer-foreground pt-16 pb-6">
       <div className="container">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
-          {/* About */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-10">
+          {/* About - Clean and Professional */}
           <div>
             <Link
               to="/"
-              className="flex items-center gap-2 font-poppins font-bold text-xl text-white mb-5"
+              className="flex items-center gap-2 font-poppins text-2xl text-white mb-5"
             >
-              <Clock className="w-6 h-6 text-primary-accent" />
+              <img
+                src="/src/assets/icon.png"
+                alt="HourMaker Logo"
+                className="w-10 h-10 object-contain"
+              />
               Hourmaker
             </Link>
-            <p className="text-footer-muted mb-5 text-sm leading-relaxed">
-              Smart timesheets and workforce management for modern teams.
-              Streamline your operations and boost productivity with our
-              comprehensive platform.
+            <p className="text-footer-muted text-sm leading-relaxed">
+              Trusted by companies for intelligent workforce management.
+              Automate time tracking, streamline operations, and boost
+              productivity.
             </p>
           </div>
 
@@ -39,10 +42,42 @@ const Footer = () => {
             <ul className="space-y-3">
               <li>
                 <Link
-                  to="/documentation"
+                  to="/features"
                   className="text-footer-muted hover:text-primary-accent transition-colors text-sm"
                 >
-                  Features
+                  All Features
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/features/automatic-tracking"
+                  className="text-footer-muted hover:text-primary-accent transition-colors text-sm"
+                >
+                  Auto Time Tracking
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/features/attendance"
+                  className="text-footer-muted hover:text-primary-accent transition-colors text-sm"
+                >
+                  Attendance System
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/features/onboarding"
+                  className="text-footer-muted hover:text-primary-accent transition-colors text-sm"
+                >
+                  Candidate Onboarding
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/features/projects"
+                  className="text-footer-muted hover:text-primary-accent transition-colors text-sm"
+                >
+                  Project Tracking
                 </Link>
               </li>
               <li>
@@ -53,34 +88,43 @@ const Footer = () => {
                   Pricing
                 </Link>
               </li>
-              {/* <li>
+            </ul>
+          </div>
+
+          {/* Resources */}
+          <div>
+            <h4 className="font-poppins font-semibold text-lg text-white mb-5">
+              Resources
+            </h4>
+            <ul className="space-y-3">
+              <li>
                 <Link
-                  to="/resources#integrations"
+                  to="/resources#blog"
                   className="text-footer-muted hover:text-primary-accent transition-colors text-sm"
                 >
-                  Integrations
+                  Blog
+                </Link>
+              </li>
+              {/* <li>
+                <Link
+                  to="/documentation"
+                  className="text-footer-muted hover:text-primary-accent transition-colors text-sm"
+                >
+                  Documentation
                 </Link>
               </li> */}
               <li>
                 <Link
-                  to="/resources#updates"
+                  to="/resources#help"
                   className="text-footer-muted hover:text-primary-accent transition-colors text-sm"
                 >
-                  Updates
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/documentation#api"
-                  className="text-footer-muted hover:text-primary-accent transition-colors text-sm"
-                >
-                  API
+                  Help Center
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Company Links */}
+          {/* Company */}
           <div>
             <h4 className="font-poppins font-semibold text-lg text-white mb-5">
               Company
@@ -94,20 +138,12 @@ const Footer = () => {
                   About Us
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link
                   to="/company#ekaggata"
                   className="text-footer-muted hover:text-primary-accent transition-colors text-sm"
                 >
                   Ekaggata Tech
-                </Link>
-              </li>
-              {/* <li>
-                <Link
-                  to="/careers"
-                  className="text-footer-muted hover:text-primary-accent transition-colors text-sm"
-                >
-                  Careers
                 </Link>
               </li> */}
               <li>

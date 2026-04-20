@@ -1,17 +1,56 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { Clock, ChevronDown, Menu, X } from "lucide-react";
+import { href, Link, useLocation } from "react-router-dom";
+import { ChevronDown, Menu, X } from "lucide-react";
 import DemoModal from "../DemoModal";
 
-const featuresDropdown = [
-  { label: "Timesheet Management", href: "/documentation" },
-  // { label: "Staff Scheduling", href: "/documentation#scheduling" },
-  { label: "Leave/Attendance Management", href: "/documentation#attendance" },
-  { label: "Approval Workflow", href: "/documentation#workflow" },
-  { label: "Project Tracking", href: "/documentation#projects" },
-  { label: "Onboarding/Recruitment", href: "/documentation#onboarding" },
-  { label: "Reporting & Analytics", href: "/documentation#analytics" },
+// Features organized by categories
+const featureCategories = [
+  {
+    name: "Time Tracking",
+    items: [
+      { label: "Auto Time Tracking", href: "/features/automatic-tracking" },
+      { label: "Manual Time Tracking", href: "/features/manual-tracking" },
+    ],
+  },
+  {
+    name: "HR & People",
+    items: [
+      { label: "Leave & Attendance", href: "/features/attendance" },
+      { label: "Onboarding & Recruitment", href: "/features/onboarding" },
+      { label: "Holiday Management", href: "/features/holiday" },
+    ],
+  },
+  {
+    name: "Project & Billing",
+    items: [
+      { label: "Project Tracking", href: "/features/projects" },
+      { label: "Billing Management", href: "/features/billing" },
+      { label: "Client Management", href: "/features/client-management" },
+      { label: "Invoicing", href: "/features/invoicing" },
+    ],
+  },
+  {
+    name: "Collaboration",
+    items: [
+      { label: "Meeting Scheduling", href: "/features/meeting-scheduling" },
+      { label: "Docs Portal", href: "/features/docs-portal" },
+    ],
+  },
+  {
+    name: "Administration",
+    items: [
+      { label: "User Management", href: "/features/user-management" },
+      {
+        label: "Access & Role Management",
+        href: "/features/access-management",
+      },
+      { label: "Reporting & Analytics", href: "/features/analytics" },
+    ],
+  },
 ];
+
+// Flatten for mobile dropdown and active detection
+const allFeatures = featureCategories.flatMap((category) => category.items);
 
 const companyDropdown = [
   { label: "About Us", href: "/company" },
@@ -30,7 +69,7 @@ const resourcesDropdown = [
   // { label: "Documentation", href: "/documentation" },
 ];
 
-const NavItem = ({ label, href, dropdown, isActive }) => {
+const NavItem = ({ label, href, dropdown, isActive, categories }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -61,25 +100,67 @@ const NavItem = ({ label, href, dropdown, isActive }) => {
             className={`w-4 h-4 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
           />
         </button>
+
+        {/* Dropdown with consistent styling */}
         <div
-          className={`absolute top-full left-0 min-w-[220px] bg-white rounded-xl shadow-lg z-[100] transition-all duration-300 ${
+          className={`absolute top-full left-0 bg-white rounded-xl shadow-lg z-[100] transition-all duration-300 overflow-hidden ${
             isOpen
               ? "opacity-100 visible translate-y-0"
               : "opacity-0 invisible translate-y-2.5"
-          }`}
+          } ${categories ? "min-w-[600px]" : "min-w-[220px]"}`}
         >
-          {dropdown.map((item, index) => (
-            <Link
-              key={item.label}
-              to={item.href}
-              className={`block px-6 py-3 text-foreground transition-all duration-200 hover:bg-primary-light hover:text-primary hover:pl-6 ${
-                index !== dropdown.length - 1 ? "border-b border-border" : ""
-              }`}
-              onClick={() => setIsOpen(false)}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {categories ? (
+            /* Features Dropdown - Multi-column with categories */
+            <div className="p-6">
+              <div className="grid grid-cols-3 gap-6">
+                {categories.map((category, idx) => (
+                  <div key={idx}>
+                    <h3 className="text-xs font-semibold text-primary-dark uppercase tracking-wider mb-3">
+                      {category.name}
+                    </h3>
+                    <ul className="space-y-2">
+                      {category.items.map((item) => (
+                        <li key={item.label}>
+                          <Link
+                            to={item.href}
+                            className="block text-sm text-muted-foreground hover:text-primary transition-colors"
+                            onClick={() => setIsOpen(false)}
+                          >
+                            {item.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+
+              {/* View All Link */}
+              <div className="mt-4 pt-4 border-t border-border">
+                <Link
+                  to="/features"
+                  className="text-sm text-primary font-medium hover:underline"
+                  onClick={() => setIsOpen(false)}
+                >
+                  View all features →
+                </Link>
+              </div>
+            </div>
+          ) : (
+            /* Regular Dropdown for Company/Resources - Consistent styling */
+            <div className="py-2">
+              {dropdown.map((item) => (
+                <Link
+                  key={item.label}
+                  to={item.href}
+                  className="block px-6 py-3 text-sm text-muted-foreground hover:text-primary hover:bg-primary-light transition-colors"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     );
@@ -133,9 +214,14 @@ const Header = () => {
         <div className="container flex justify-between items-center">
           <Link
             to="/"
-            className="flex items-center gap-2 font-poppins font-bold text-2xl text-primary-dark"
+            className="flex items-center gap-2 font-poppins text-2xl text-primary-dark"
           >
-            <Clock className="w-8 h-8 text-primary" />
+            {/* Logo image - 512x512 resized to 32x32 */}
+            <img
+              src="/src/assets/icon.png"
+              alt="HourMaker Logo"
+              className="w-10 h-10 object-contain"
+            />
             HourMaker
           </Link>
 
@@ -155,8 +241,12 @@ const Header = () => {
           <nav className="hidden lg:flex items-center gap-8">
             <NavItem
               label="Features"
-              dropdown={featuresDropdown}
-              isActive={isActiveDropdown(featuresDropdown)}
+              dropdown={allFeatures}
+              categories={featureCategories}
+              isActive={
+                isActiveDropdown(allFeatures) ||
+                location.pathname === "/features"
+              }
             />
             <NavItem
               label="Pricing"
@@ -175,9 +265,14 @@ const Header = () => {
             />
             <NavItem
               label="Resources"
+              href="/resources"
+              isActive={isActiveRoute("/resources")}
+            />
+            {/* <NavItem
+              label="Resources"
               dropdown={resourcesDropdown}
               isActive={isActiveDropdown(resourcesDropdown)}
-            />
+            /> */}
             <button
               onClick={() => setIsDemoModalOpen(true)}
               className="ml-4 px-6 py-3 bg-primary text-primary-foreground font-poppins font-semibold rounded-xl transition-all duration-300 hover:bg-primary-dark hover:-translate-y-0.5 hover:shadow-button"
@@ -200,7 +295,7 @@ const Header = () => {
                 href="/"
                 isActive={isActiveRoute("/")}
               />
-              <MobileDropdown label="Features" items={featuresDropdown} />
+              <MobileDropdown label="Features" items={allFeatures} />
               <MobileNavItem
                 label="Pricing"
                 href="/pricing"

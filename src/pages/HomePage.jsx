@@ -15,31 +15,60 @@ import {
   Star,
   Building2,
   ChevronDown,
+  PlayCircle,
+  X,
+  ArrowRight,
+  Check,
 } from "lucide-react";
 import Layout from "../components/layout/Layout";
 import DemoModal from "../components/DemoModal";
+import { features } from "../data/features";
+import { faqData } from "../data/pageFaq";
+import { getRandomReviews } from "../data/reviews";
 
 const HomePage = () => {
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+
+  // Prevent body scroll when video modal is open
+  React.useEffect(() => {
+    if (isVideoModalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isVideoModalOpen]);
+
+  // YouTube video embed URL
+  const videoId = "-yog_Gext-c";
+  const videoEmbedUrl = `https://www.youtube.com/embed/${videoId}?si=MOL1jV-4a8fOYEfk&autoplay=1&rel=0&modestbranding=1`;
 
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="hero-gradient py-20 lg:py-28 overflow-hidden">
+      <section className="bg-gradient-to-b from-white to-primary/5 py-16 lg:py-24 overflow-hidden">
         <div className="container">
-          <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+          {/* Add H1 for SEO */}
+          <h1 className="sr-only">
+            Time Tracking Software | Automated Workforce Management Tool
+          </h1>
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
             <div className="flex-1 animate-fade-in">
-              <h1 className="font-poppins text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-6">
+              <h2 className="font-poppins text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-6">
                 Smart Timesheets &{" "}
                 <span className="text-primary">Workforce Management</span> for
                 Modern Teams
-              </h1>
+              </h2>
               <p className="text-lg text-muted-foreground mb-8 max-w-xl">
                 Automate time tracking, streamline approvals, and gain
                 actionable insights with our all-in-one workforce management
                 platform. Optimize productivity and reduce administrative
                 overhead.
               </p>
+              {/* Rest of the component */}
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
                   onClick={() => setIsDemoModalOpen(true)}
@@ -55,268 +84,35 @@ const HomePage = () => {
                 </button>
               </div>
             </div>
-            {/* <div className="flex-1 flex justify-center">
-              <div className="relative w-full max-w-lg">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary-light rounded-2xl transform rotate-3"></div>
-                <div className="relative bg-white rounded-2xl shadow-2xl p-6 transform -rotate-1">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-3 h-3 rounded-full bg-destructive"></div>
-                    <div className="w-3 h-3 rounded-full bg-warning"></div>
-                    <div className="w-3 h-3 rounded-full bg-success"></div>
-                  </div>
-                  <div className="space-y-3">
-                    <div className="h-8 bg-primary-light rounded-lg w-3/4"></div>
-                    <div className="h-24 bg-muted rounded-lg"></div>
-                    <div className="grid grid-cols-3 gap-3">
-                      <div className="h-16 bg-primary/10 rounded-lg"></div>
-                      <div className="h-16 bg-success/10 rounded-lg"></div>
-                      <div className="h-16 bg-warning/10 rounded-lg"></div>
-                    </div>
-                    <div className="h-6 bg-muted rounded w-1/2"></div>
-                  </div>
-                </div>
-              </div>
-            </div> */}
+
             <div className="flex-1 flex justify-center">
-              <div className="relative w-full max-w-lg">
-                {/* Animated background glow */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-primary-light/30 to-white/40 rounded-2xl transform rotate-3 animate-pulse"></div>
-
-                {/* Dashboard Main Container */}
-                <div className="relative bg-gradient-to-br from-white via-white to-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-5 transform -rotate-1 border border-white/40 overflow-hidden">
-                  {/* Dashboard Header */}
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
-                        <div className="w-4 h-4 rounded-full bg-primary"></div>
-                      </div>
-                      <div>
-                        <div className="h-2.5 bg-primary/30 rounded-full w-24 mb-1"></div>
-                        <div className="h-2 bg-muted-foreground/20 rounded-full w-16"></div>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <div className="w-2 h-2 rounded-full bg-destructive"></div>
-                      <div className="w-2 h-2 rounded-full bg-warning"></div>
-                      <div className="w-2 h-2 rounded-full bg-success"></div>
-                    </div>
-                  </div>
-
-                  {/* Main Dashboard Grid */}
-                  <div className="grid grid-cols-12 gap-3">
-                    {/* Left Column - Charts */}
-                    <div className="col-span-8 space-y-3">
-                      {/* Bar Chart Header */}
-                      <div className="flex justify-between items-center">
-                        <div className="h-3 bg-primary/20 rounded-lg w-28"></div>
-                        <div className="flex gap-1">
-                          {["W", "M", "Y"].map((period, i) => (
-                            <div
-                              key={period}
-                              className={`px-2 py-0.5 text-xs rounded ${i === 1 ? "bg-primary text-white" : "bg-muted"}`}
-                            >
-                              {period}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Bar Chart */}
-                      <div className="relative h-32 bg-gradient-to-b from-primary/5 to-transparent rounded-lg p-3">
-                        <div className="absolute bottom-0 left-3 right-3 flex items-end justify-between h-24">
-                          {Array.from({ length: 7 }).map((_, i) => (
-                            <div key={i} className="flex flex-col items-center">
-                              <div
-                                className={`w-4 rounded-t-lg transition-all duration-300 hover:opacity-80 ${
-                                  i === 3
-                                    ? "bg-primary h-20"
-                                    : i === 0 || i === 6
-                                      ? "bg-primary-light h-12"
-                                      : "bg-primary/40 h-" + (14 + i * 8)
-                                }`}
-                              ></div>
-                              <div className="text-xs text-muted-foreground mt-1">
-                                {
-                                  [
-                                    "Mon",
-                                    "Tue",
-                                    "Wed",
-                                    "Thu",
-                                    "Fri",
-                                    "Sat",
-                                    "Sun",
-                                  ][i]
-                                }
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                        {/* Grid lines */}
-                        <div className="absolute inset-0 flex flex-col justify-between">
-                          {[0, 1, 2, 3].map((i) => (
-                            <div
-                              key={i}
-                              className="border-t border-border/20"
-                            ></div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Mini Stats */}
-                      <div className="grid grid-cols-3 gap-2">
-                        <div className="bg-success/10 rounded-lg p-2 text-center">
-                          <div className="text-lg font-bold text-success">
-                            98%
-                          </div>
-                          <div className="text-xs text-muted-foreground">
-                            Adoption
-                          </div>
-                        </div>
-                        <div className="bg-primary/10 rounded-lg p-2 text-center">
-                          <div className="text-lg font-bold text-primary">
-                            3x
-                          </div>
-                          <div className="text-xs text-muted-foreground">
-                            Faster
-                          </div>
-                        </div>
-                        <div className="bg-warning/10 rounded-lg p-2 text-center">
-                          <div className="text-lg font-bold text-warning">
-                            95%
-                          </div>
-                          <div className="text-xs text-muted-foreground">
-                            Accuracy
-                          </div>
-                        </div>
+              {/* Video Thumbnail - Increased size */}
+              <div className="relative w-full max-w-2xl">
+                <div
+                  className="relative group cursor-pointer"
+                  onClick={() => setIsVideoModalOpen(true)}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent rounded-2xl transform rotate-2 group-hover:rotate-1 transition-transform"></div>
+                  <div className="relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl overflow-hidden shadow-xl border border-white/10">
+                    <img
+                      src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
+                      alt="Hourmaker Demo Video Thumbnail"
+                      className="w-full h-auto"
+                      onError={(e) => {
+                        e.target.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+                      }}
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-24 h-24 bg-white/90 rounded-full flex items-center justify-center shadow-xl transform group-hover:scale-110 transition-transform">
+                        <PlayCircle className="w-12 h-12 text-primary" />
                       </div>
                     </div>
-
-                    {/* Right Column - Pie Chart */}
-                    <div className="col-span-4">
-                      <div className="h-3 bg-primary/20 rounded-lg w-20 mb-3"></div>
-                      <div className="relative">
-                        {/* Donut Chart */}
-                        <div className="relative w-28 h-28 mx-auto">
-                          <div className="absolute inset-0 rounded-full border-[10px] border-transparent">
-                            {/* Primary segment */}
-                            <div
-                              className="absolute inset-0 rounded-full border-[10px] border-primary"
-                              style={{
-                                clipPath:
-                                  "polygon(50% 50%, 50% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 50%)",
-                              }}
-                            ></div>
-                            {/* Success segment */}
-                            <div
-                              className="absolute inset-0 rounded-full border-[10px] border-success"
-                              style={{
-                                clipPath:
-                                  "polygon(50% 50%, 100% 0%, 100% 100%, 100% 100%, 50% 100%)",
-                              }}
-                            ></div>
-                            {/* Warning segment */}
-                            <div
-                              className="absolute inset-0 rounded-full border-[10px] border-warning"
-                              style={{
-                                clipPath:
-                                  "polygon(50% 50%, 0% 100%, 0% 0%, 0% 0%, 50% 0%)",
-                              }}
-                            ></div>
-                          </div>
-                          {/* Center */}
-                          <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="text-center">
-                              <div className="text-xl font-bold text-primary-dark">
-                                85%
-                              </div>
-                              <div className="text-xs text-muted-foreground">
-                                Utilization
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Chart Legend */}
-                        <div className="space-y-2 mt-3">
-                          {[
-                            {
-                              color: "bg-primary",
-                              label: "Productive",
-                              value: "45%",
-                            },
-                            {
-                              color: "bg-success",
-                              label: "Meetings",
-                              value: "25%",
-                            },
-                            {
-                              color: "bg-warning",
-                              label: "Admin",
-                              value: "15%",
-                            },
-                          ].map((item, i) => (
-                            <div
-                              key={i}
-                              className="flex items-center justify-between"
-                            >
-                              <div className="flex items-center gap-1">
-                                <div
-                                  className={`w-2 h-2 rounded-full ${item.color}`}
-                                ></div>
-                                <div className="text-xs text-muted-foreground">
-                                  {item.label}
-                                </div>
-                              </div>
-                              <div className="text-xs font-medium text-primary-dark">
-                                {item.value}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Bottom Row - Recent Activity */}
-                    <div className="col-span-12 mt-3 pt-3 border-t border-border">
-                      <div className="h-3 bg-primary/20 rounded-lg w-32 mb-2"></div>
-                      <div className="space-y-2">
-                        {[
-                          {
-                            time: "09:30 AM",
-                            action: "Team sync completed",
-                            color: "bg-success",
-                          },
-                          {
-                            time: "11:15 AM",
-                            action: "Timesheet approved",
-                            color: "bg-primary",
-                          },
-                          {
-                            time: "02:45 PM",
-                            action: "Schedule updated",
-                            color: "bg-warning",
-                          },
-                        ].map((activity, i) => (
-                          <div key={i} className="flex items-center gap-3">
-                            <div
-                              className={`w-2 h-2 rounded-full ${activity.color}`}
-                            ></div>
-                            <div className="text-xs text-muted-foreground flex-1">
-                              {activity.action}
-                            </div>
-                            <div className="text-xs font-medium">
-                              {activity.time}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-5">
+                      <p className="text-white font-medium text-base">
+                        Watch Demo: Hourmaker Platform Overview
+                      </p>
                     </div>
                   </div>
-
-                  {/* Animated Elements */}
-                  <div className="absolute top-1/4 -left-4 w-8 h-8 bg-primary/10 rounded-full blur-md animate-pulse"></div>
-                  <div className="absolute bottom-1/3 -right-3 w-6 h-6 bg-success/10 rounded-full blur-md animate-pulse delay-700"></div>
-                  <div className="absolute top-3/4 left-1/4 w-4 h-4 bg-warning/10 rounded-full blur-md animate-pulse delay-300"></div>
                 </div>
               </div>
             </div>
@@ -324,115 +120,287 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Problem Section */}
+      {/* Video Modal */}
+      {isVideoModalOpen && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+          onClick={() => setIsVideoModalOpen(false)}
+        >
+          <div className="absolute inset-0 bg-black/80 backdrop-blur-md"></div>
+          <div
+            className="relative w-full max-w-4xl bg-black rounded-2xl overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-300"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setIsVideoModalOpen(false)}
+              className="absolute top-3 right-3 z-10 w-8 h-8 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white transition-colors border border-white/20"
+            >
+              <X className="w-4 h-4" />
+            </button>
+            <div className="relative aspect-video">
+              <iframe
+                src={videoEmbedUrl}
+                title="Hourmaker Platform Overview Demo"
+                className="absolute top-0 left-0 w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Features Section */}
       <section className="py-20 bg-white">
         <div className="container">
-          <div className="flex flex-col lg:flex-row items-center gap-12">
-            <div className="flex-1 order-2 lg:order-1">
-              <h2 className="font-poppins text-3xl md:text-4xl font-bold text-primary-dark mb-6">
-                Why Modern Teams Need Hourmaker
-              </h2>
-              <p className="text-lg text-muted-foreground mb-6">
-                Manual time tracking and workforce management processes are
-                inefficient, error-prone, and don't scale with growing teams.
-                This leads to:
-              </p>
-              <ul className="space-y-4 mb-6">
-                {[
-                  "Inaccurate billing and payroll errors",
-                  "Compliance risks and audit failures",
-                  "Low employee satisfaction with manual processes",
-                  "Limited visibility into workforce productivity",
-                  "Wasted hours on administrative tasks",
-                ].map((item, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <XCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                    <span className="text-foreground">{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <p className="text-muted-foreground">
-                Hourmaker solves these challenges with an intuitive, automated
-                platform designed for today's distributed workforce.
-              </p>
+          <div className="text-center mb-16">
+            <h2 className="font-poppins text-3xl md:text-4xl font-bold text-primary-dark mb-4">
+              Powerful Features We Provide
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Everything you need to manage your workforce efficiently in one
+              integrated platform
+            </p>
+          </div>
+
+          <div className="relative max-w-5xl mx-auto">
+            {/* Progress Line */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-primary/20 via-primary to-primary/20 hidden lg:block"></div>
+
+            {/* Feature Items - Ordered as requested */}
+            <div className="space-y-16">
+              {/* 1. Auto Time Tracking */}
+              {features.find((f) => f.id === "automatic-tracking") && (
+                <FeatureItem
+                  feature={features.find((f) => f.id === "automatic-tracking")}
+                  index={0}
+                />
+              )}
+
+              {/* 2. Manual Time Tracking */}
+              {features.find((f) => f.id === "manual-tracking") && (
+                <FeatureItem
+                  feature={features.find((f) => f.id === "manual-tracking")}
+                  index={1}
+                />
+              )}
+
+              {/* 3. Cloud Repo for Documentation */}
+              {features.find((f) => f.id === "docs-portal") && (
+                <FeatureItem
+                  feature={features.find((f) => f.id === "docs-portal")}
+                  index={2}
+                />
+              )}
+
+              {/* 4. Billing Management */}
+              {features.find((f) => f.id === "billing") && (
+                <FeatureItem
+                  feature={features.find((f) => f.id === "billing")}
+                  index={3}
+                />
+              )}
+
+              {/* 5. Invoicing */}
+              {features.find((f) => f.id === "invoicing") && (
+                <FeatureItem
+                  feature={features.find((f) => f.id === "invoicing")}
+                  index={4}
+                />
+              )}
+
+              {/* 6. Reporting & Analytics */}
+              {features.find((f) => f.id === "analytics") && (
+                <FeatureItem
+                  feature={features.find((f) => f.id === "analytics")}
+                  index={5}
+                />
+              )}
+
+              {/* 7. Onboarding & Recruitment */}
+              {features.find((f) => f.id === "onboarding") && (
+                <FeatureItem
+                  feature={features.find((f) => f.id === "onboarding")}
+                  index={6}
+                />
+              )}
             </div>
-            <div className="flex-1 order-1 lg:order-2">
-              <div className="grid grid-cols-2 gap-4">
+          </div>
+
+          {/* View All Features Link */}
+          <div className="text-center mt-16">
+            <Link
+              to="/features"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-poppins font-semibold rounded-xl hover:bg-primary-dark transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+            >
+              Explore All Features
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-muted">
+        <div className="container">
+          <div className="text-center mb-16">
+            <h2 className="font-poppins text-3xl md:text-4xl font-bold text-primary-dark mb-4">
+              The Challenge of Modern Workforce Management
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              As teams grow and work becomes more distributed, traditional
+              approaches create new obstacles
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
+            {/* Left Column - Problems */}
+            <div className="space-y-8">
+              <h3 className="font-poppins text-xl font-semibold text-primary-dark mb-6">
+                Common Pain Points
+              </h3>
+
+              <div className="space-y-6">
                 {[
-                  { icon: Clock, label: "Time Saved", value: "70%" },
-                  { icon: BarChart3, label: "Accuracy", value: "95%" },
-                  { icon: Timer, label: "Adoption", value: "98%" },
-                  { icon: Calendar, label: "Faster", value: "3x" },
-                ].map((stat, index) => (
-                  <div
-                    key={index}
-                    className="glass-card rounded-xl p-6 text-center"
-                  >
-                    <stat.icon className="w-10 h-10 text-primary mx-auto mb-3" />
-                    <div className="text-2xl font-bold text-primary-dark mb-1">
-                      {stat.value}
+                  {
+                    problem: "Inaccurate billing and payroll errors",
+                    description:
+                      "Manual time entries lead to mistakes, costing businesses thousands in incorrect payroll and lost billable hours.",
+                  },
+                  // {
+                  //   problem: "Compliance risks and audit failures",
+                  //   description:
+                  //     "Keeping up with labor laws across regions becomes nearly impossible with spreadsheets and manual tracking.",
+                  // },
+                  {
+                    problem: "Low employee satisfaction with manual processes",
+                    description:
+                      "Cumbersome timesheets and approval processes frustrate employees and waste their valuable time.",
+                  },
+                  {
+                    problem: "Limited visibility into workforce productivity",
+                    description:
+                      "Without real-time data, managers struggle to make informed decisions about resource allocation.",
+                  },
+                  {
+                    problem: "Wasted hours on administrative tasks",
+                    description:
+                      "HR and finance teams spend 10+ hours per week just chasing timesheets and fixing errors.",
+                  },
+                ].map((item, index) => (
+                  <div key={index} className="flex gap-4">
+                    <div className="flex-shrink-0">
+                      <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center">
+                        <span className="text-primary text-sm font-medium">
+                          {index + 1}
+                        </span>
+                      </div>
                     </div>
-                    <div className="text-sm text-muted-foreground">
-                      {stat.label}
+                    <div>
+                      <h4 className="font-medium text-foreground mb-1">
+                        {item.problem}
+                      </h4>
+                      <p className="text-sm text-muted-foreground">
+                        {item.description}
+                      </p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Solutions Section */}
-      <section className="py-20 bg-muted">
-        <div className="container">
-          <div className="section-title">
-            <h2>Comprehensive Solutions We Provide</h2>
-            <p>
-              Hourmaker offers a complete suite of tools to manage your entire
-              workforce efficiently
-            </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: Timer,
-                title: "Automated Time Tracking",
-                description:
-                  "Track work hours automatically across projects with real-time visibility and accurate reporting.",
-              },
-              {
-                icon: Calendar,
-                title: "Intelligent Scheduling",
-                description:
-                  "Create optimized schedules that match skills with demand while considering employee preferences.",
-              },
-              {
-                icon: BarChart3,
-                title: "Advanced Analytics",
-                description:
-                  "Gain insights into workforce productivity, project profitability, and operational efficiency.",
-              },
-            ].map((solution, index) => (
-              <div
-                key={index}
-                className="glass-card rounded-xl p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-card-hover"
-              >
-                <div className="solution-icon">
-                  <solution.icon className="w-8 h-8 text-primary" />
+            {/* Right Column - Solutions */}
+            <div className="space-y-8">
+              <h3 className="font-poppins text-xl font-semibold text-primary-dark mb-6">
+                How Hourmaker Solves Them
+              </h3>
+
+              <div className="bg-white rounded-2xl p-8 shadow-sm border border-border/50">
+                <div className="space-y-8">
+                  {[
+                    {
+                      solution: "Automated time capture with 99.9% accuracy",
+                      description:
+                        "Our system eliminates manual entry errors by automatically tracking time across devices and platforms.",
+                    },
+                    // {
+                    //   solution: "Built-in compliance for 20+ labor laws",
+                    //   description:
+                    //     "Stay compliant automatically with pre-configured rules for overtime, breaks, and leave policies.",
+                    // },
+                    {
+                      solution: "Employee-first design",
+                      description:
+                        "Intuitive interfaces that your team will actually enjoy using, with zero training required.",
+                    },
+                    {
+                      solution: "Real-time dashboards and instant insights",
+                      description:
+                        "See productivity, costs, and project progress as they happen, not weeks later.",
+                    },
+                    {
+                      solution: "85% reduction in administrative work",
+                      description:
+                        "Automated workflows and approvals free up your team to focus on strategic initiatives.",
+                    },
+                  ].map((item, index) => (
+                    <div key={index} className="flex gap-4 group">
+                      <div className="flex-shrink-0 mt-1">
+                        <div className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center group-hover:bg-primary/30 transition-colors">
+                          <div className="w-2 h-2 rounded-full bg-primary"></div>
+                        </div>
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-foreground mb-1">
+                          {item.solution}
+                        </h4>
+                        <p className="text-sm text-muted-foreground">
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-                <h3 className="font-poppins text-xl font-semibold text-primary-dark mb-4">
-                  {solution.title}
-                </h3>
-                <p className="text-muted-foreground">{solution.description}</p>
+
+                {/* Bottom Stats - Subtle */}
+                <div className="mt-8 pt-6 border-t border-border/50">
+                  <div className="grid grid-cols-3 gap-4">
+                    {[
+                      { label: "Time saved", value: "70%" },
+                      { label: "Accuracy", value: "99.9%" },
+                      { label: "Adoption", value: "98%" },
+                    ].map((stat, index) => (
+                      <div key={index} className="text-center">
+                        <div className="text-xl font-semibold text-primary-dark">
+                          {stat.value}
+                        </div>
+                        <div className="text-xs text-muted-foreground mt-1">
+                          {stat.label}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
-            ))}
+            </div>
+          </div>
+
+          {/* Bottom CTA - Very Subtle */}
+          <div className="text-center mt-16">
+            <p className="text-muted-foreground">
+              Ready to leave these challenges behind?{" "}
+              <button
+                onClick={() => setIsDemoModalOpen(true)}
+                className="text-primary hover:underline font-medium"
+              >
+                See how Hourmaker can help
+              </button>
+            </p>
           </div>
         </div>
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-muted">
+      <section className="py-20 bg-white">
         <div className="container">
           <div className="section-title">
             <h2>Hear What Others Say About Us</h2>
@@ -442,37 +410,9 @@ const HomePage = () => {
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                initials: "AK",
-                name: "Anjali Kumar",
-                role: "CTO, TechNova Solutions",
-                rating: 5,
-                content:
-                  "Hourmaker has transformed how we manage our distributed team of 200+ engineers. Time tracking accuracy improved by 95% and administrative workload decreased by 70%.",
-                company: "TechNova Solutions • 500+ employees",
-              },
-              {
-                initials: "RS",
-                name: "Rajesh Sharma",
-                role: "Operations Director, Global BPO Inc.",
-                rating: 4.5,
-                content:
-                  "Switching to Hourmaker saved us 1200+ hours monthly in administrative work. The scheduling features alone have optimized our shift planning, reducing overtime costs by 35%.",
-                company: "Global BPO Inc. • 1200+ employees",
-              },
-              {
-                initials: "PS",
-                name: "Priya Singh",
-                role: "HR Head, GrowthStart Ventures",
-                rating: 5,
-                content:
-                  "The onboarding and leave management features have streamlined our HR processes dramatically. What used to take days now happens in hours.",
-                company: "GrowthStart Ventures • 300+ employees",
-              },
-            ].map((testimonial, index) => (
+            {getRandomReviews(3).map((testimonial) => (
               <div
-                key={index}
+                key={testimonial.id}
                 className="glass-card rounded-xl p-6 transition-all duration-300 hover:-translate-y-1"
               >
                 <div className="flex items-center mb-4">
@@ -488,14 +428,14 @@ const HomePage = () => {
                     </p>
                   </div>
                 </div>
-                <div className="flex gap-1 mb-4 text-warning">
+                {/* <div className="flex gap-1 mb-4 text-warning">
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
                       className={`w-4 h-4 ${i < Math.floor(testimonial.rating) ? "fill-current" : ""}`}
                     />
                   ))}
-                </div>
+                </div> */}
                 <p className="text-foreground italic mb-4 leading-relaxed">
                   "{testimonial.content}"
                 </p>
@@ -509,77 +449,8 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-20 bg-white">
-        <div className="container">
-          <div className="section-title">
-            <h2>Powerful Features for Modern Teams</h2>
-            <p>
-              Everything you need to manage your workforce efficiently in one
-              integrated platform
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                icon: FileText,
-                title: "Timesheet Management",
-                description:
-                  "Automated timesheet generation with approval workflows and integration with payroll systems.",
-              },
-              {
-                icon: CalendarCheck,
-                title: "Staff Scheduling",
-                description:
-                  "Create and manage employee schedules with drag-and-drop interface and conflict detection.",
-              },
-              {
-                icon: UserCheck,
-                title: "Leave/Attendance Management",
-                description:
-                  "Track attendance, leaves, and time-off requests with automated policy enforcement.",
-              },
-              {
-                icon: FolderKanban,
-                title: "Project Tracking",
-                description:
-                  "Monitor project hours, budgets, and progress with real-time dashboards.",
-              },
-              {
-                icon: CheckSquare,
-                title: "Approval Workflow",
-                description:
-                  "Customizable approval chains for timesheets, leaves, expenses, and schedule changes.",
-              },
-              {
-                icon: UserPlus,
-                title: "Onboarding/Recruitment",
-                description:
-                  "Streamline employee onboarding and integrate with recruitment platforms.",
-              },
-            ].map((feature, index) => (
-              <Link
-                key={index}
-                to={`/documentation#${feature.title.toLowerCase().replace(/[^a-z]/g, "-")}`}
-                className="glass-card rounded-xl p-6 border border-border transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover hover:border-primary/30"
-              >
-                <div className="feature-icon">
-                  <feature.icon />
-                </div>
-                <h3 className="font-poppins text-lg font-semibold text-primary-dark mb-3">
-                  {feature.title}
-                </h3>
-                <p className="text-muted-foreground text-sm">
-                  {feature.description}
-                </p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Pricing Preview Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-muted">
         <div className="container">
           <div className="section-title">
             <h2>Simple, Transparent Pricing</h2>
@@ -689,8 +560,20 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-20 bg-muted">
+      {/* FAQ Section - Updated with dynamic data */}
+      <section className="py-20 bg-white">
+        <div className="container">
+          <div className="section-title">
+            <h2>Frequently Asked Questions</h2>
+            <p>Find answers to common questions about Hourmaker</p>
+          </div>
+          <div className="max-w-3xl mx-auto">
+            <FAQSection page="home" />
+          </div>
+        </div>
+      </section>
+
+      {/* <section className="py-20 bg-white">
         <div className="container">
           <div className="section-title">
             <h2>Frequently Asked Questions</h2>
@@ -720,10 +603,136 @@ const HomePage = () => {
             />
           </div>
         </div>
-      </section>
+      </section> */}
 
       <DemoModal open={isDemoModalOpen} onOpenChange={setIsDemoModalOpen} />
     </Layout>
+  );
+};
+
+// Feature Item Component
+const FeatureItem = ({ feature, index }) => {
+  const Icon = feature.icon;
+  const imagePath = `/src/assets/${feature.image}`;
+  const isEven = index % 2 === 0;
+
+  return (
+    <div className="relative">
+      {/* Progress Dot */}
+      <div className="absolute left-1/2 transform -translate-x-1/2 -top-3 w-6 h-6 bg-primary rounded-full border-4 border-white shadow-lg hidden lg:block"></div>
+
+      <div
+        className={`flex flex-col ${isEven ? "lg:flex-row" : "lg:flex-row-reverse"} items-center gap-8 lg:gap-12`}
+      >
+        {/* Image Side */}
+        <div className="lg:w-1/2">
+          <div className="relative group">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent rounded-2xl transform rotate-2 group-hover:rotate-1 transition-transform"></div>
+            <div className="relative rounded-2xl overflow-hidden shadow-xl border border-border/50">
+              <img
+                src={imagePath}
+                alt={feature.title}
+                className="w-full h-auto object-cover"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.style.display = "none";
+                  // Show icon fallback
+                  const parent = e.target.parentElement;
+                  const fallback = document.createElement("div");
+                  fallback.className =
+                    "bg-gradient-to-br from-primary-light to-muted p-16 text-center";
+                  fallback.innerHTML = `<svg class="w-24 h-24 text-primary/40 mx-auto" ...></svg>`;
+                  parent.appendChild(fallback);
+                }}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Content Side */}
+        <div className="lg:w-1/2">
+          <div className="space-y-4">
+            {/* Icon and Title */}
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-12 h-12 rounded-xl bg-primary-light flex items-center justify-center">
+                <Icon className="w-6 h-6 text-primary" />
+              </div>
+              <h3 className="font-poppins text-2xl font-bold text-primary-dark">
+                {feature.title}
+              </h3>
+            </div>
+
+            {/* Description */}
+            <p className="text-muted-foreground leading-relaxed">
+              {feature.description}
+            </p>
+
+            {/* Key Benefits */}
+            <div className="space-y-3 mt-6">
+              {feature.benefits.map((benefit, idx) => (
+                <div key={idx} className="flex items-start gap-3">
+                  <div className="mt-1">
+                    <Check className="w-4 h-4 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-primary-dark">
+                      {benefit.title}
+                    </h4>
+                    <p className="text-sm text-muted-foreground">
+                      {benefit.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Learn More Link */}
+            <div className="pt-4">
+              <Link
+                to={`/features/${feature.slug}`}
+                className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all group"
+              >
+                Learn More About {feature.title}
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// FAQ Section Component with Load More
+const FAQSection = ({ page }) => {
+  const [displayCount, setDisplayCount] = useState(5);
+  const faqs = faqData[page] || [];
+  const displayedFaqs = faqs.slice(0, displayCount);
+  const hasMore = faqs.length > displayCount;
+
+  return (
+    <>
+      {displayedFaqs.map((faq) => (
+        <FAQItem
+          key={faq.id}
+          question={faq.question}
+          answer={faq.answer}
+          defaultOpen={faq.id === 1}
+        />
+      ))}
+
+      {hasMore && (
+        <div className="text-center mt-8">
+          <button
+            onClick={() => setDisplayCount((prev) => prev + 5)}
+            className="px-6 py-3 border-2 border-primary text-primary font-semibold rounded-xl hover:bg-primary-light transition-colors inline-flex items-center gap-2"
+          >
+            Load More FAQs
+            <ChevronDown className="w-4 h-4" />
+          </button>
+        </div>
+      )}
+    </>
   );
 };
 

@@ -10,6 +10,8 @@ import {
 } from "lucide-react";
 import Layout from "../components/layout/Layout";
 import DemoModal from "../components/DemoModal";
+import { faqData } from "../data/pageFaq";
+import { getRandomReviews } from "../data/reviews";
 
 const PricingPage = () => {
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
@@ -224,7 +226,7 @@ const PricingPage = () => {
       </section>
 
       {/* Comparison Table */}
-      <section className="py-20 bg-muted">
+      {/* <section className="py-20 bg-muted">
         <div className="container">
           <div className="section-title">
             <h2>Compare Hourmaker with Alternatives</h2>
@@ -331,7 +333,7 @@ const PricingPage = () => {
             are leading workforce management platforms.
           </p>
         </div>
-      </section>
+      </section> */}
 
       {/* Add-ons Section */}
       <section className="py-20 bg-white">
@@ -402,44 +404,19 @@ const PricingPage = () => {
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                initials: "RS",
-                name: "Rohan Sharma",
-                role: "CFO, MediCare Hospitals",
-                quote:
-                  "After implementing Hourmaker, we reduced our administrative costs by 65% and saved over ₹8 lakhs annually. The ROI was evident within the first quarter.",
-                metric: "65% cost reduction | ₹8L annual savings",
-              },
-              {
-                initials: "PM",
-                name: "Priya Mehta",
-                role: "Operations Director, TechGrowth Inc.",
-                quote:
-                  "We compared 5 solutions before choosing Hourmaker. Not only was it 40% more affordable, but the implementation was 3x faster than promised.",
-                metric: "40% more affordable | 3x faster implementation",
-              },
-              {
-                initials: "AS",
-                name: "Arjun Singh",
-                role: "CEO, RetailChain India",
-                quote:
-                  "The pricing transparency was refreshing. No hidden costs, no surprise add-ons. Our total workforce management cost dropped by 55%.",
-                metric: "55% cost reduction | Zero hidden fees",
-              },
-            ].map((quote, index) => (
+            {getRandomReviews(3).map((review) => (
               <div
-                key={index}
+                key={review.id}
                 className="glass-card rounded-xl p-6 border border-border transition-all duration-300 hover:-translate-y-1"
               >
                 <div className="flex items-center mb-4">
-                  <div className="testimonial-avatar">{quote.initials}</div>
+                  <div className="testimonial-avatar">{review.initials}</div>
                   <div>
                     <h4 className="font-poppins font-semibold text-primary-dark">
-                      {quote.name}
+                      {review.name}
                     </h4>
                     <p className="text-sm text-muted-foreground">
-                      {quote.role}
+                      {review.role}
                     </p>
                   </div>
                 </div>
@@ -447,11 +424,11 @@ const PricingPage = () => {
                   <span className="absolute -left-2 -top-2 text-4xl text-primary-light font-serif">
                     "
                   </span>
-                  {quote.quote}
+                  {review.content}
                 </p>
                 <div className="flex items-center text-sm text-muted-foreground">
                   <Check className="w-4 h-4 text-success mr-2" />
-                  {quote.metric}
+                  {review.company}
                 </div>
               </div>
             ))}
@@ -459,8 +436,21 @@ const PricingPage = () => {
         </div>
       </section>
 
-      {/* FAQ Section */}
+      {/* FAQ Section - Updated with dynamic data */}
       <section className="py-20 bg-white">
+        <div className="container">
+          <div className="section-title">
+            <h2>Frequently Asked Pricing Questions</h2>
+            <p>Get answers to common questions about our pricing</p>
+          </div>
+          <div className="max-w-3xl mx-auto">
+            <PricingFAQSection />
+          </div>
+        </div>
+      </section>
+
+      {/* Old FAQ Section - Commented out */}
+      {/* <section className="py-20 bg-white">
         <div className="container">
           <div className="section-title">
             <h2>Frequently Asked Pricing Questions</h2>
@@ -490,7 +480,7 @@ const PricingPage = () => {
             />
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA Section */}
       <section className="cta-gradient py-20 text-center text-white">
@@ -516,12 +506,49 @@ const PricingPage = () => {
   );
 };
 
+// FAQ Section Component with Load More for Pricing Page
+const PricingFAQSection = () => {
+  const [displayCount, setDisplayCount] = useState(5);
+  const faqs = faqData.pricing || [];
+  const displayedFaqs = faqs.slice(0, displayCount);
+  const hasMore = faqs.length > displayCount;
+
+  return (
+    <>
+      {displayedFaqs.map((faq) => (
+        <FAQItem
+          key={faq.id}
+          question={faq.question}
+          answer={faq.answer}
+          defaultOpen={faq.id === 1}
+        />
+      ))}
+
+      {hasMore && (
+        <div className="text-center mt-8">
+          <button
+            onClick={() => setDisplayCount((prev) => prev + 5)}
+            className="px-6 py-3 border-2 border-primary text-primary font-semibold rounded-xl hover:bg-primary-light transition-colors inline-flex items-center gap-2"
+          >
+            Load More FAQs
+            <ChevronDown className="w-4 h-4" />
+          </button>
+        </div>
+      )}
+    </>
+  );
+};
+
+// FAQ Item Component
 const FAQItem = ({ question, answer, defaultOpen = false }) => {
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   return (
     <div className="faq-item">
-      <button className="faq-question" onClick={() => setIsOpen(!isOpen)}>
+      <button
+        className="faq-question w-full"
+        onClick={() => setIsOpen(!isOpen)}
+      >
         <span className="font-poppins font-semibold text-lg text-left text-primary-dark">
           {question}
         </span>
