@@ -1,0 +1,715 @@
+{
+  "intents": [
+    {
+      "id": 1,
+      "intent": "automatic_time_tracking",
+      "description": "Automatic time tracking feature that captures work hours without manual entry",
+      "keywords": [
+        "auto time tracking",
+        "automatic time tracking",
+        "auto timesheet",
+        "automatic timesheet",
+        "automatic time log",
+        "auto tracking",
+        "automatic tracking",
+        "track time automatically",
+        "auto timer",
+        "background tracking",
+        "idle detection",
+        "automatic timer",
+        "auto clock in",
+        "auto clock out",
+        "track without manual entry",
+        "automated time capture",
+        "real-time tracking",
+        "track work automatically",
+        "smart tracking",
+        "time tracking",
+        "intelligent tracking",
+        "time tracking without manual entry",
+        "how to track time automatically",
+        "auto time logger",
+        "automatic work timer",
+        "track hours automatically"
+      ],
+      "answers": [
+        "Hourmaker's automatic time tracking captures work hours in real-time without any manual entry. It detects your active work, tracks time in the background, and even has idle time detection to ensure accuracy.",
+        "Our automatic tracking feature works silently in the background, logging time based on your activity. It includes smart idle detection and auto-pauses when you step away, ensuring 98% accuracy.",
+        "With automatic time tracking, you never need to start or stop timers manually. The system detects when you're working on tasks and projects, automatically logging every billable minute."
+      ]
+    },
+    {
+      "id": 2,
+      "intent": "manual_time_tracking",
+      "description": "Manual timesheet entry and management",
+      "keywords": [
+        "manual time tracking",
+        "manual timesheet",
+        "timesheet",
+        "time entry",
+        "log hours manually",
+        "enter time",
+        "timesheet entry",
+        "manual log",
+        "weekly timesheet",
+        "bi-weekly timesheet",
+        "monthly timesheet",
+        "timesheet approval",
+        "time log",
+        "fill timesheet",
+        "submit timesheet",
+        "approve timesheet",
+        "timesheet template",
+        "copy timesheet",
+        "bulk time entry",
+        "quick time entry",
+        "time sheet"
+      ],
+      "answers": [
+        "Hourmaker's manual time tracking offers an intuitive timesheet interface with smart copy functionality, bulk entry options, and multi-level approval workflows. You can submit weekly, bi-weekly, or monthly timesheets.",
+        "Our manual timesheet feature allows you to log hours with minimal clicks. You can copy previous days, use templates for recurring tasks, and managers can approve or reject entries with comments.",
+        "The timesheet module supports flexible entry periods, bulk operations for managers, and seamless integration with payroll systems. It's designed for teams that prefer manual entry with complete audit trails."
+      ]
+    },
+    {
+      "id": 3,
+      "intent": "leave_attendance_management",
+      "description": "Leave requests, attendance tracking, and time-off management",
+      "keywords": [
+        "leave management",
+        "attendance management",
+        "leave request",
+        "time off",
+        "pto",
+        "sick leave",
+        "casual leave",
+        "annual leave",
+        "earned leave",
+        "leave balance",
+        "leave accrual",
+        "attendance tracking",
+        "mark attendance",
+        "check in",
+        "check out",
+        "clock in",
+        "clock out",
+        "shift management",
+        "overtime",
+        "comp off",
+        "leave policy",
+        "holiday management",
+        "attendance report",
+        "late arrival",
+        "early departure",
+        "leave approval",
+        "leave calendar"
+      ],
+      "answers": [
+        "Hourmaker provides comprehensive leave and attendance management with multiple leave types (PTO, sick, casual, earned), automatic balance calculation, shift management, and overtime tracking. Employees can request leave online with manager approval workflows.",
+        "Our attendance module supports multiple check-in methods including web-based check-ins. You can manage shifts, track overtime, and enforce leave policies automatically. Leave balances update in real-time with automatic accruals.",
+        "The leave and attendance system includes holiday integration, automatic overtime calculation, shift management for rotating schedules, and complete audit trails for compliance. Managers get real-time visibility into attendance patterns."
+      ]
+    },
+    {
+      "id": 4,
+      "intent": "scheduling_staff_management",
+      "description": "Employee scheduling, shift planning, and staff allocation",
+      "keywords": [
+        "scheduling",
+        "staff scheduling",
+        "employee scheduling",
+        "shift scheduling",
+        "shift planning",
+        "roster",
+        "work schedule",
+        "staff roster",
+        "shift management",
+        "schedule creation",
+        "drag drop schedule",
+        "shift templates",
+        "shift swap",
+        "availability",
+        "staff allocation",
+        "resource scheduling",
+        "work shifts",
+        "night shift",
+        "rotating shift",
+        "schedule builder"
+      ],
+      "answers": [
+        "Hourmaker's intelligent scheduling allows you to create, manage, and optimize employee schedules with drag-and-drop functionality. Features include shift templates, conflict detection, employee availability tracking, and real-time notifications.",
+        "Our scheduling module helps you create shift rosters, manage shift swaps, and ensure adequate coverage. You can set recurring schedules, track employee availability, and get alerts for potential conflicts or overtime.",
+        "With smart scheduling, you can forecast staffing needs, manage rotating shifts, and allow employees to request shift swaps. The system automatically detects double-bookings and sends schedule updates to your team."
+      ]
+    },
+    {
+      "id": 5,
+      "intent": "project_tracking",
+      "description": "Project-based time tracking, budgets, and profitability",
+      "keywords": [
+        "project tracking",
+        "project management",
+        "project time tracking",
+        "task tracking",
+        "project budget",
+        "budget monitoring",
+        "project hours",
+        "task management",
+        "project profitability",
+        "resource allocation",
+        "project dashboard",
+        "milestone tracking",
+        "project timeline",
+        "gantt chart",
+        "project cost",
+        "billable hours",
+        "project status",
+        "task assignment",
+        "project reporting"
+      ],
+      "answers": [
+        "Hourmaker's project tracking lets you monitor project hours, budgets, and progress in real-time. Features include task-level time breakdown, budget alerts, resource allocation views, and profitability analysis for every project.",
+        "Our project management module helps you create projects with budgets and deadlines, assign tasks to team members, track time against specific tasks, and get real-time alerts when projects approach budget limits.",
+        "With project tracking, you can see exactly how time is being spent across tasks, identify underutilized resources, and analyze project profitability. The system includes milestone tracking and Gantt chart views for timeline management."
+      ]
+    },
+    {
+      "id": 6,
+      "intent": "billing_invoicing",
+      "description": "Billing management, invoicing, and payment tracking",
+      "keywords": [
+        "billing",
+        "invoicing",
+        "invoice",
+        "generate invoice",
+        "client billing",
+        "auto invoice",
+        "recurring invoice",
+        "billing rates",
+        "multi-rate billing",
+        "payment tracking",
+        "expense tracking",
+        "invoice template",
+        "payment reminder",
+        "billing dashboard",
+        "revenue tracking",
+        "invoice generation",
+        "send invoice",
+        "payment collection",
+        "overdue invoice"
+      ],
+      "answers": [
+        "Hourmaker's billing module automates invoice generation from approved timesheets. Features include multi-rate billing, expense tracking, recurring invoices, and automated payment reminders to improve cash flow.",
+        "Our invoicing system lets you create professional invoices with customizable templates. You can set up recurring invoices for retainer clients, embed payment links directly in invoices, and track payment status in real-time.",
+        "With automated billing, you can generate invoices automatically from tracked time, configure different billing rates per client or project, and get real-time insights into revenue and accounts receivable."
+      ]
+    },
+    {
+      "id": 7,
+      "intent": "reporting_analytics",
+      "description": "Reports, dashboards, and data analytics",
+      "keywords": [
+        "reporting",
+        "analytics",
+        "reports",
+        "dashboard",
+        "custom report",
+        "pre-built reports",
+        "kpi monitoring",
+        "trend analysis",
+        "resource utilization",
+        "productivity report",
+        "export report",
+        "schedule report",
+        "data insights",
+        "real-time dashboard",
+        "business intelligence",
+        "report builder",
+        "analytics dashboard"
+      ],
+      "answers": [
+        "Hourmaker offers powerful reporting and analytics with pre-built reports for productivity, utilization, and profitability. You can build custom reports with our drag-and-drop report builder and create interactive dashboards.",
+        "Our analytics module provides real-time KPI monitoring, trend analysis, and resource utilization insights. You can export reports in multiple formats (PDF, Excel, CSV) and schedule automated report delivery.",
+        "With custom dashboards, you can visualize your workforce data exactly how you need it. Track key metrics in real-time, identify patterns, and make data-driven decisions with comprehensive analytics."
+      ]
+    },
+    {
+      "id": 8,
+      "intent": "onboarding_recruitment",
+      "description": "Employee onboarding and recruitment management",
+      "keywords": [
+        "onboarding",
+        "recruitment",
+        "new hire",
+        "employee onboarding",
+        "candidate onboarding",
+        "applicant tracking",
+        "ats",
+        "job posting",
+        "interview scheduling",
+        "offer management",
+        "digital onboarding",
+        "new hire portal",
+        "onboarding checklist",
+        "document collection",
+        "pre-boarding",
+        "candidate management",
+        "hiring process"
+      ],
+      "answers": [
+        "Hourmaker's onboarding module streamlines the entire employee journey from candidate to new hire. Features include applicant tracking, digital onboarding forms, document collection, and automated task assignments for new employees.",
+        "Our recruitment tools help you manage the hiring pipeline, schedule interviews, and send offer letters. Once hired, new employees get a personalized portal with everything they need before day one.",
+        "With digital onboarding, you can collect documents electronically, automate policy acknowledgments, and track onboarding progress. The system reduces time-to-productivity by 45% and cuts administrative work by 70%."
+      ]
+    },
+    {
+      "id": 9,
+      "intent": "docs_portal",
+      "description": "Cloud document repository and file management",
+      "keywords": [
+        "docs portal",
+        "document repository",
+        "cloud storage",
+        "file management",
+        "document management",
+        "secure storage",
+        "file sharing",
+        "document sharing",
+        "employee documents",
+        "contract storage",
+        "policy documents",
+        "version control",
+        "secure cloud",
+        "document access"
+      ],
+      "answers": [
+        "Hourmaker's cloud document portal provides secure, encrypted storage for all your business documents. You can organize files with folders and tags, control access permissions, and share documents securely with expiry links.",
+        "Our document repository lets you store employee contracts, company policies, and important files in one central location. Features include secure sharing, download restrictions, and automatic backup.",
+        "With smart organization, you can tag employees to specific documents, control who can view or edit, and access your files from anywhere on any device. All documents are encrypted with enterprise-grade security."
+      ]
+    },
+    {
+      "id": 10,
+      "intent": "access_role_management",
+      "description": "User permissions and role-based access control",
+      "keywords": [
+        "access management",
+        "role management",
+        "user permissions",
+        "rbac",
+        "role-based access",
+        "permissions",
+        "user roles",
+        "access control",
+        "security settings",
+        "admin controls",
+        "user groups",
+        "department access",
+        "permission levels"
+      ],
+      "answers": [
+        "Hourmaker provides granular role-based access control with custom roles and permissions. You can control access at the module level, restrict data visibility by department, and manage complete audit trails of all access changes.",
+        "Our access management system lets you create custom roles with specific permissions, set up manager hierarchies for approvals, and enforce security policies across your organization.",
+        "With role-based access, you can ensure users only see what they need. Features include module-level control, data restrictions, and comprehensive audit logs for compliance requirements."
+      ]
+    },
+    {
+      "id": 11,
+      "intent": "user_management",
+      "description": "User administration and employee directory",
+      "keywords": [
+        "user management",
+        "employee directory",
+        "user administration",
+        "bulk import",
+        "user lifecycle",
+        "employee profiles",
+        "department management",
+        "user onboarding",
+        "user offboarding",
+        "team management",
+        "employee database",
+        "organization chart"
+      ],
+      "answers": [
+        "Hourmaker's user management system allows you to add, update, or deactivate users in bulk. Features include CSV import, department management, employee directories, and complete user lifecycle automation from onboarding to offboarding.",
+        "Our user administration tools let you manage all employees from one place. You can organize by departments, set reporting hierarchies, add custom fields to profiles, and track user activity logs.",
+        "With centralized user management, you can quickly add team members, assign roles, and maintain a searchable employee directory with contact information, skills tracking, and emergency contacts."
+      ]
+    },
+    {
+      "id": 12,
+      "intent": "holiday_calendar",
+      "description": "Holiday calendar and regional holiday management",
+      "keywords": [
+        "holiday",
+        "holiday calendar",
+        "company holiday",
+        "public holiday",
+        "regional holiday",
+        "holiday list",
+        "holiday schedule",
+        "holiday management",
+        "holiday tracking",
+        "leave policy holiday",
+        "holiday integration"
+      ],
+      "answers": [
+        "Hourmaker's holiday calendar lets you manage company-wide and regional holidays with ease. The system automatically adjusts leave balances and attendance rules for holidays, and employees can see upcoming holidays in advance.",
+        "Our holiday management module supports multiple locations with different holiday lists. You can configure holiday types (mandatory, optional), track holiday work hours, and automatically apply premium rates.",
+        "With holiday integration, leave balances adjust automatically when holidays fall on workdays. The system also tracks holiday work and applies compensatory off or premium rates based on your policies."
+      ]
+    },
+    {
+      "id": 13,
+      "intent": "meeting_scheduling",
+      "description": "Meeting scheduler and calendar integration",
+      "keywords": [
+        "meeting scheduling",
+        "schedule meeting",
+        "calendar integration",
+        "book meeting",
+        "availability sharing",
+        "meeting link",
+        "recurring meeting",
+        "resource booking",
+        "room booking",
+        "video conferencing",
+        "meeting reminders"
+      ],
+      "answers": [
+        "Hourmaker's meeting scheduler eliminates back-and-forth emails. You can share availability, let others book time, and automatically generate video conference links. Features include calendar sync and automated reminders.",
+        "Our scheduling tool integrates with Google Calendar, Outlook, and other calendars. You can book meeting rooms, set up recurring meetings, and send automatic reminders to reduce no-shows.",
+        "With smart meeting scheduling, you can share your availability without exposing calendar details, let people book based on your preferences, and sync all meetings automatically across your calendars."
+      ]
+    },
+    {
+      "id": 14,
+      "intent": "client_management",
+      "description": "Client portal and client relationship management",
+      "keywords": [
+        "client management",
+        "client portal",
+        "client access",
+        "client portal login",
+        "client dashboard",
+        "share with client",
+        "client communication",
+        "client approvals",
+        "client feedback",
+        "client collaboration"
+      ],
+      "answers": [
+        "Hourmaker's client portal gives your clients secure, branded access to view project status, timesheets, and invoices. You control exactly what they can see, from high-level progress to detailed time entries.",
+        "Our client management features let you share documents securely, collect digital approvals, and maintain centralized communication with each client. Clients can review and approve timesheets directly.",
+        "With client portals, you can provide transparency while maintaining control. Clients can view and pay invoices online, give feedback, and see project updates without needing to email you for status."
+      ]
+    },
+    {
+      "id": 15,
+      "intent": "approval_workflows",
+      "description": "Multi-level approval workflows and delegation",
+      "keywords": [
+        "approval workflow",
+        "approval chain",
+        "multi-level approval",
+        "timesheet approval",
+        "leave approval",
+        "expense approval",
+        "delegation",
+        "approval rules",
+        "auto approval",
+        "escalation",
+        "approval process"
+      ],
+      "answers": [
+        "Hourmaker provides flexible approval workflows with multi-level hierarchies, parallel and sequential paths, and automatic escalation. You can configure custom approval rules by department or project type.",
+        "Our approval system supports timesheet approvals, leave approvals, expense approvals, and schedule changes. Managers can approve, reject, or request changes with comments, and all actions are tracked in audit logs.",
+        "With automated workflows, pending approvals escalate automatically if not reviewed on time. You can set up delegation rules for out-of-office periods and configure email notifications for approvers."
+      ]
+    },
+    {
+      "id": 16,
+      "intent": "product_overview",
+      "description": "What Hourmaker does and its core purpose",
+      "keywords": [
+        "hourmaker",
+        "what is hourmaker",
+        "what does hourmaker do",
+        "about hourmaker",
+        "platform overview",
+        "workforce management",
+        "time tracking software",
+        "attendance software",
+        "scheduling software",
+        "hr software",
+        "what can hourmaker do",
+        "hourmaker features",
+        "hourmaker platform"
+      ],
+      "answers": [
+        "Hourmaker is a comprehensive workforce management platform that automates time tracking, employee scheduling, leave management, project tracking, billing, and approvals for businesses of all sizes.",
+        "Our all-in-one platform helps businesses streamline HR operations, improve productivity, and reduce administrative overhead with features like automatic time tracking, intelligent scheduling, and powerful analytics.",
+        "Hourmaker provides everything you need to manage your workforce efficiently - from timesheets and attendance to project tracking and client billing, all in one integrated platform."
+      ]
+    },
+    {
+      "id": 17,
+      "intent": "pricing",
+      "description": "Pricing, plans, and cost-related questions",
+      "keywords": [
+        "price",
+        "pricing",
+        "plan",
+        "plans",
+        "cost",
+        "monthly",
+        "subscription",
+        "fee",
+        "how much",
+        "charges",
+        "pricing plans",
+        "starter price",
+        "professional price",
+        "enterprise price",
+        "per user cost",
+        "annual pricing",
+        "discount",
+        "billing cycle",
+        "payment options"
+      ],
+      "answers": [
+        "Hourmaker offers flexible pricing: Starter at ₹599/user/month (billed annually), Professional at ₹1299/user/month (billed annually), and Enterprise with custom pricing. All plans include a 14-day free trial with full feature access.",
+        "Our Starter plan is perfect for small teams up to 50 employees. The Professional plan includes unlimited employees, advanced features like scheduling and project tracking, and priority support. Enterprise includes custom integrations and dedicated support.",
+        "Pricing starts at just ₹45/employee/month for Starter plan with annual billing. Professional is ₹85/employee/month. Enterprise pricing is tailored to your organization's needs. All plans include free trial - no credit card required."
+      ]
+    },
+    {
+      "id": 18,
+      "intent": "free_trial",
+      "description": "Free trial and try-before-buy questions",
+      "keywords": [
+        "free trial",
+        "trial",
+        "try",
+        "free",
+        "14 day",
+        "test",
+        "demo access",
+        "try for free",
+        "free demo",
+        "no credit card",
+        "trial period",
+        "free access",
+        "try before buy"
+      ],
+      "answers": [
+        "Yes! You get a 14-day free trial of our Professional plan with full access to all features. No credit card required to start - you can experience everything our platform offers risk-free.",
+        "Absolutely! Our free trial gives you complete access to all Professional plan features for 14 days. You can test automatic time tracking, scheduling, leave management, and all other features without any commitment.",
+        "Definitely! Start your 14-day free trial today and explore everything Hourmaker has to offer. No credit card needed, and you can cancel anytime during the trial period."
+      ]
+    },
+    {
+      "id": 19,
+      "intent": "integrations",
+      "description": "Third-party tools and integrations",
+      "keywords": [
+        "integration",
+        "integrations",
+        "tools",
+        "connect",
+        "slack",
+        "teams",
+        "microsoft teams",
+        "integrate",
+        "jira",
+        "quickbooks",
+        "xero",
+        "adp",
+        "workday",
+        "api",
+        "webhook",
+        "zapier",
+        "connect with",
+        "sync with"
+      ],
+      "answers": [
+        "Hourmaker integrates with 50+ popular tools including Slack, Microsoft Teams, Jira, QuickBooks, Xero, ADP, and Workday. We also provide a powerful REST API for custom integrations and webhooks for real-time notifications.",
+        "Our integration ecosystem connects with the tools your team already uses. You can sync with payroll systems, project management tools, and communication platforms. Plus, our API allows you to build custom connections.",
+        "We support pre-built integrations with major platforms and offer comprehensive API documentation for custom integrations. Connect Hourmaker with your existing tech stack seamlessly through our integration marketplace."
+      ]
+    },
+    {
+      "id": 20,
+      "intent": "support",
+      "description": "Customer support and help options",
+      "keywords": [
+        "support",
+        "help",
+        "customer support",
+        "assistance",
+        "email support",
+        "priority support",
+        "24/7",
+        "help center",
+        "contact support",
+        "support team",
+        "technical support",
+        "customer service",
+        "ticket",
+        "get help"
+      ],
+      "answers": [
+        "We offer tiered support based on your plan: Starter includes email support, Professional includes priority support with faster response times, and Enterprise customers get 24/7 premium support with a dedicated account manager.",
+        "All plans include access to our comprehensive help center, documentation, and video tutorials. Professional and Enterprise customers also get priority response times and dedicated implementation support.",
+        "Our support team is here to help! Starter plan customers get email support, Professional gets priority support, and Enterprise enjoys 24/7 premium support with a dedicated account manager who knows your business."
+      ]
+    },
+    {
+      "id": 21,
+      "intent": "demo",
+      "description": "Product demo and walkthrough requests",
+      "keywords": [
+        "demo",
+        "schedule demo",
+        "book demo",
+        "product demo",
+        "walkthrough",
+        "call",
+        "meeting",
+        "see demo",
+        "show me",
+        "live demo",
+        "product tour",
+        "get demo"
+      ],
+      "answers": [
+        "You can schedule a personalized demo with our team at hourmaker.in/demo or request one through this chat. We'll walk you through the platform, answer your questions, and show you how Hourmaker can solve your specific challenges.",
+        "Book a demo today to see Hourmaker in action! Our product experts will give you a personalized tour, show you how the features work, and help you understand how our platform can transform your workforce management.",
+        "Ready to see Hourmaker? Schedule your demo and we'll provide a comprehensive walkthrough tailored to your business needs. We'll cover all features that matter to you and answer any questions you have."
+      ]
+    },
+    {
+      "id": 22,
+      "intent": "security",
+      "description": "Data security, compliance, and privacy",
+      "keywords": [
+        "security",
+        "secure",
+        "data security",
+        "privacy",
+        "encryption",
+        "soc 2",
+        "compliance",
+        "data safe",
+        "gdpr",
+        "data protection",
+        "secure storage",
+        "data privacy",
+        "is it safe",
+        "trustworthy"
+      ],
+      "answers": [
+        "Your data is protected with enterprise-grade security measures including end-to-end encryption, SOC 2 Type II compliance, regular security audits, and 24/7 monitoring. We treat data security as our top priority.",
+        "Hourmaker uses bank-level encryption for data in transit and at rest. We maintain SOC 2 compliance, conduct regular penetration testing, and offer features like SSO and MFA for added security.",
+        "We take security seriously. Our platform includes role-based access controls, IP restrictions, complete audit logs, and data residency options. We're committed to protecting your workforce data with industry-leading security practices."
+      ]
+    },
+    {
+      "id": 23,
+      "intent": "data_export",
+      "description": "Data export and ownership",
+      "keywords": [
+        "export",
+        "download",
+        "data export",
+        "csv",
+        "excel",
+        "pdf",
+        "backup",
+        "vendor lock",
+        "export data",
+        "download timesheets",
+        "extract data",
+        "data ownership",
+        "data portability",
+        "get my data"
+      ],
+      "answers": [
+        "You own your data completely. Export timesheets, reports, and employee data in CSV, Excel, or PDF format anytime. Even if you cancel, your data remains accessible for 30 days, and there's no vendor lock-in.",
+        "Absolutely! You can export your data in multiple formats with just a few clicks. We believe in data portability - you should never feel locked into our platform. Take your data whenever you need.",
+        "Yes, full data export capabilities are available to all users. Export anything from timesheets to analytics reports in your preferred format. You maintain complete control and ownership of your data."
+      ]
+    },
+    {
+      "id": 24,
+      "intent": "mobile_app",
+      "description": "Mobile app availability and features",
+      "keywords": [
+        "mobile app",
+        "ios app",
+        "android app",
+        "phone app",
+        "mobile version",
+        "app store",
+        "play store",
+        "mobile tracking",
+        "app download",
+        "mobile timesheet",
+        "track on phone",
+        "is there an app",
+        "do you have an app",
+        "mobile application"
+      ],
+      "answers": [
+        "Hourmaker currently does NOT offer a mobile app. The platform is available as a web application that can be accessed through any modern web browser on your desktop or laptop computer. We recommend using the web version for all features and functionality.",
+        "No, Hourmaker does not have a mobile app at this time. You can access Hourmaker through your web browser on any desktop or laptop computer. All features are fully available through the web interface.",
+        "Hourmaker does not currently provide a mobile application. The platform is designed to work seamlessly on desktop and laptop browsers. We'll notify our users if a mobile app becomes available in the future."
+      ]
+    },
+    {
+      "id": 25,
+      "intent": "payroll_integration",
+      "description": "Payroll system integration",
+      "keywords": [
+        "payroll",
+        "payroll integration",
+        "payroll system",
+        "adp",
+        "quickbooks",
+        "xero",
+        "payroll export",
+        "salary processing",
+        "payroll data",
+        "export to payroll"
+      ],
+      "answers": [
+        "Hourmaker integrates seamlessly with popular payroll systems including ADP, QuickBooks, Xero, and more. You can export approved timesheets directly to your payroll software with one click, eliminating manual data entry.",
+        "Our payroll integration ensures accurate salary processing by automatically transferring timesheet data to your payroll system. We support major payroll platforms and offer custom integrations for enterprise customers.",
+        "Yes, you can export timesheet data directly to your payroll software. Our integration ensures that all approved hours, overtime, and leave are accurately reflected in payroll processing without manual re-entry."
+      ]
+    },
+    {
+      "id": 26,
+      "intent": "customization",
+      "description": "Customization options and flexibility",
+      "keywords": [
+        "customize",
+        "customization",
+        "custom fields",
+        "custom reports",
+        "custom workflow",
+        "personalize",
+        "tailor",
+        "configure",
+        "settings",
+        "custom templates"
+      ],
+      "answers": [
+        "Hourmaker is highly customizable. You can add custom fields to user profiles, create custom reports with any data points you need, configure approval workflows to match your processes, and customize email templates and branding.",
+        "Our platform adapts to your business needs. Customize leave policies, shift rules, billing rates, and reporting dashboards. You can also add custom fields to track any data specific to your organization.",
+        "We understand every business is unique. That's why Hourmaker offers extensive customization options - from custom fields and reports to workflow rules and approval hierarchies that match your exact processes."
+      ]
+    }
+  ]
+}
