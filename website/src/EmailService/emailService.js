@@ -3,6 +3,7 @@ import { emailConfig, functionsBaseUrl } from "./firebaseConfig";
 // Email templates for different use cases
 export const emailTemplates = {
   SUPPORT_REQUEST: "SUPPORT_REQUEST",
+
   DEMO_REQUEST: "DEMO_REQUEST",
   CONTACT_FORM: "CONTACT_FORM",
   CHAT_ESCALATION: "CHAT_ESCALATION",
