@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://hour-maker-vite.vercel.app/sitemap.xml

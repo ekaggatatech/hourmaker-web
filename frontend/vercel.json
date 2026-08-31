@@ -1,0 +1,15 @@
+{
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/src/assets/:path*",
+      "destination": "/assets/:path*",
+      "permanent": true
+    }
+  ]
+}
