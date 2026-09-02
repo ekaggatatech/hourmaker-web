@@ -12,7 +12,7 @@ const Layout = ({ children }) => {
       {/* {!hideBreadcrumbs && <Breadcrumbs />} */}
       <main className="flex-1">{children}</main>
       <Footer />
-      <Chatbot />
+      {/* <Chatbot /> */}
     </div>
   );
 };
