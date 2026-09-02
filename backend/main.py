@@ -37,17 +37,29 @@ def chat(data: Message):
     session_id = data.session_id or str(uuid.uuid4())
     history = session_store.get(session_id, [])
     
-    response = run_chatbot(data.message, history)
-    
-    # Update history
-    history.append({"role": "user", "content": data.message})
-    history.append({"role": "model", "content": response["answer"]})
-    session_store[session_id] = history
-    
-    return {
-        "answer": response["answer"],
-        "session_id": session_id
-    }
+    try:
+        response = run_chatbot(data.message, history)
+        
+        # Update history
+        history.append({"role": "user", "content": data.message})
+        history.append({"role": "model", "content": response["answer"]})
+        session_store[session_id] = history
+        
+        return {
+            "answer": response["answer"],
+            "session_id": session_id
+        }
+    except Exception as e:
+        import traceback
+        error_msg = str(e)
+        print(f"Error in chat endpoint: {error_msg}")
+        traceback.print_exc()
+        # Return a friendly error message and the exact error so the frontend can read it
+        # without triggering a CORS error on the browser
+        return {
+            "answer": f"Sorry, I encountered an internal server error: {error_msg}. Please check the backend logs on Render.",
+            "session_id": session_id
+        }
 
 @app.get("/")
 def root():
