@@ -1,0 +1,33 @@
+{
+  "greetings": {
+    "opening": [
+      "Hi there! 👋 I'm here to help. Ask me anything about Hourmaker!",
+      "Hello! I'm your Hourmaker assistant. How can I help you today?",
+      "Hey there! Got questions about Hourmaker? I'm here to help!",
+      "Welcome! I'm your Hourmaker assistant. What can I help you with?"
+    ]
+  },
+  "flows": {
+    "afterFlow": {
+      "followUp": [
+        "Is there anything else I can help you with?",
+        "Would you like to know something else?",
+        "Can I assist you with anything else?",
+        "Need help with anything more?"
+      ]
+    },
+    "unmatchedResponse": [
+      "I'm not sure I have the answer to that specific question. You can check our detailed FAQ or contact our support team for more help.",
+      "That's a great question 🫡! I don't have the specific answer right now, but our support team would be happy to help you with that.",
+      "I'm still learning! For that question, I recommend checking our documentation or reaching out to our support team directly.",
+      "I'm sorry, I don't have enough information to answer that question accurately. Would you like me to connect you with our support team?",
+      "Hmm, I'm not finding a specific answer for that in my knowledge base. Our support team can provide more detailed assistance."
+    ],
+    "randomInputResponse": [
+      "I'm here to help with questions about Hourmaker! Feel free to ask about our features, pricing, or how we can help your business.",
+      "Looking for information about Hourmaker? Try asking about our features, pricing plans, or how we can help streamline your workforce management.",
+      "I'm your Hourmaker assistant! You can ask me about our time tracking features, scheduling tools, pricing plans, or anything else about our platform.",
+      "Need help with Hourmaker? Ask me about our features, pricing, or how to get started with a free trial!"
+    ]
+  }
+}
